@@ -1,0 +1,124 @@
+.form {
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 550px;
+
+    .form_container {
+        width: 680px;
+        height: fit-content;
+        //  background-color: #00eeff33;
+        margin: 0 auto;
+        border: 1px solid #1f2a3125;
+        border-radius: .4rem;
+
+        .form_content {
+            .form_header {
+                .form_title {
+                    text-align: center;
+                    font-size: 25px;
+                    font-weight: 600;
+                    padding: 10px;
+                    background-color: #0bebe011;
+                    border-bottom: 1px solid #1f2a3125;
+                    letter-spacing: 1px;
+                    //border-bottom: 1px solid #00e1ff;
+                }
+            }
+
+            .form_items {
+                padding: 20px 10px;
+                padding-bottom: 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .saisies {
+                    display: grid;
+                    grid-template-columns: repeat(2, auto);
+                    gap: 10px;
+                    justify-content: space-between;
+
+                    .chield {
+                        label {
+                            color: #1f2a31b7;
+
+                            span {
+                                color: #ff0000;
+                            }
+                        }
+
+                        input {
+                            display: flex;
+                            align-items: center;
+                            padding: 7px;
+                            border: 2px solid #1f2a3125;
+                            width: 320px;
+                            border-radius: .2rem;
+                        }
+
+                        .message {
+                            .text {
+                                color: #ff0000 !important;
+                            }
+
+                        }
+                    }
+                }
+
+                .form_btn {
+                    display: flex;
+                    gap: 50px;
+                    align-items: center;
+                    position: relative;
+
+                    button,
+                    a {
+                        padding: 8px 15px;
+                        font-weight: 400;
+                        font-size: 15px;
+                        color: white;
+                        border: none;
+                        transition: all .3s;
+                        border-radius: .3rem;
+                        cursor: pointer;
+                        height: fit-content;
+                        text-align: center;
+
+                    }
+
+                    .register {
+                        background-color: #05584b;
+                        //position: absolute;
+                    }
+
+                    .register:hover {
+                        background-color: #00a78e;
+                    }
+
+                    .n {
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+
+                        .inner {
+                            position: absolute;
+                            width: max-content;
+                            top: 35px;
+                        }
+
+                        .login {
+                            background-color: #004e66;
+                            left: 150px;
+                        }
+
+                        .login:hover {
+                            background-color: #008ab4;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+.header {
+  font-family: "kanit", sans-serif !important;
+  padding: 15px 0;
+  background-color: #06938b;
+  color: #fff !important;
+}
+.header .header_container {
+  margin: 0 auto;
+}
+.header .header_container .header_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .header_container .header_content .logo-block .logo {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+}
+.header .header_container .header_content .logo-block .logo::before {
+  top: 5px;
+  position: absolute;
+  content: "";
+  padding: 1px;
+  width: 40%;
+  background-color: #fff;
+}
+.header .header_container .header_content .nav .nav_container .nav_content {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+.header .header_container .header_content .nav .nav_container .nav_content .links {
+  display: flex;
+  gap: 30px;
+}
+.header .header_container .header_content .nav .nav_container .nav_content .acount {
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}/*# sourceMappingURL=header.css.map */

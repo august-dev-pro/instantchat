@@ -1,0 +1,59 @@
+.header {
+    font-family: "kanit", sans-serif !important;
+    padding: 15px 0;
+    background-color: #06938b;
+    color: #fff !important;
+
+    .header_container {
+        margin: 0 auto;
+
+        .header_content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .logo-block {
+                .logo {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 25px;
+                    font-weight: 600;
+                    position: relative;
+                }
+
+                .logo::before {
+                    top: 5px;
+                    position: absolute;
+                    content: "";
+                    padding: 1px;
+                    width: 40%;
+                    background-color: #fff;
+                }
+
+            }
+
+            .nav {
+                .nav_container {
+                    .nav_content {
+                        display: flex;
+                        align-items: center;
+                        gap: 70px;
+
+                        .links {
+                            display: flex;
+                            gap: 30px;
+                        }
+
+                        .acount {
+                            height: 40px;
+                            width: 40px;
+                            background-color: #fff;
+                            border-radius: 50%;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

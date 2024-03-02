@@ -1,0 +1,18 @@
+.dashboard {
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  height: calc(100vh - 115px);
+  overflow-y: auto;
+}
+.dashboard .dashboard_container {
+  height: 100%;
+  width: 100%;
+}
+.dashboard .dashboard_container .dashboard_content {
+  display: flex;
+  height: 100%;
+}
+.dashboard .dashboard_container .dashboard_content .show {
+  width: 100%;
+}/*# sourceMappingURL=dashboardLayout.css.map */

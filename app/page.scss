@@ -1,0 +1,45 @@
+.home {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 150px);
+  /* 100vh - (hauteur du header + hauteur du footer) */
+  overflow-y: auto;
+  align-items: center;
+
+  /* Pour activer le défilement vertical si nécessaire */
+  .home_container {
+    .home_content {
+      .home_items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .titlte {
+          .text {
+            font-size: 35px;
+            font-weight: 700;
+            text-align: center;
+          }
+
+          //.icons {}
+        }
+
+        .calls-actions {
+          display: flex;
+          gap: 100px;
+          justify-content: center;
+
+          .action {
+            background-color: #00026d;
+            border: none;
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: .5rem;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

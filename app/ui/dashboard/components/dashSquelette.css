@@ -1,0 +1,254 @@
+@charset "UTF-8";
+.dash {
+  display: flex;
+  height: 100%;
+}
+.dash .dash_container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.dash .dash_container .dash_content {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container {
+  height: 100%;
+  background-color: #2d404d;
+  box-shadow: 0px -5px 1px 0px #06938b;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content {
+  width: 300px;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .title {
+  padding: 5px 15px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields {
+  display: flex;
+  flex-direction: column;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield {
+  border: 2px solid rgba(6, 147, 140, 0);
+  display: flex;
+  padding: 5px 15px;
+  gap: 20px;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield .picture {
+  height: 50px;
+  width: 50px;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield .picture img {
+  max-width: 100%;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield .description {
+  font-size: 15px;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield .description .contact_phone_num {
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield .description .last_message {
+  font-weight: 200;
+  font-size: 14px;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield.active {
+  border-color: #06938b !important;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .chield:hover {
+  background-color: #1f2a31;
+  cursor: pointer;
+}
+.dash .dash_container .dash_content .content_show_section {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show {
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  height: 100%;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .contact {
+  display: flex;
+  padding-left: 20px;
+  background-color: rgba(57, 76, 88, 0.5058823529);
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .contact .profil_pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .contact .profil_pic .picture {
+  height: 40px;
+  width: 40px;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .contact .profil_pic .picture img {
+  max-width: 100%;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .contact .name {
+  letter-spacing: 1px;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .contact .phone {
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .discussion {
+  padding: 0 20px;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .discussion .discussion_content {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .discussion .discussion_content .message .message_text {
+  padding: 10px;
+  border-radius: 1rem;
+  font-weight: 300;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .discussion .discussion_content .message.received {
+  display: flex;
+  justify-content: left;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .discussion .discussion_content .message.received .message_text {
+  border-top-left-radius: 0;
+  max-width: 50%;
+  text-align: justify;
+  background-color: #2d404d;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .discussion .discussion_content .message.sent {
+  display: flex;
+  justify-content: right;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .discussion .discussion_content .message.sent .message_text {
+  border-bottom-right-radius: 0;
+  max-width: 50%;
+  text-align: justify;
+  background-color: rgba(6, 147, 140, 0.4039215686);
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .message-input {
+  padding: 5px 20px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: flex-end;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .message-input .emoji {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  cursor: pointer;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .message-input .espace-send {
+  display: grid;
+  grid-template-columns: 1fr 45px;
+  align-items: center;
+  border: 1px solid #06938b;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .message-input .espace-send .input {
+  max-height: 100px;
+  min-height: 40px !important;
+  height: 40px;
+  overflow-y: auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  resize: none;
+  align-items: center;
+  padding: 5px;
+  padding-left: 10px;
+  border: none;
+  background-color: inherit;
+  color: #fff;
+  font-weight: 200;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .message-input .espace-send .input:focus {
+  outline: none;
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .message-input .espace-send .input .container::-webkit-scrollbar {
+  width: 0;
+  /* Largeur de la barre de défilement WebKit à zéro */
+  height: 0;
+  /* Hauteur de la barre de défilement WebKit à zéro */
+}
+.dash .dash_container .dash_content .content_show_section .discussion_show .discussion_block .message-input .espace-send .send-btn {
+  cursor: pointer;
+  display: flex;
+  height: -moz-fit-content;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_profil_pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_profil_pic .picture {
+  height: 200px;
+  width: 200px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_profil_pic .picture img {
+  max-width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .name-num {
+  display: flex;
+  gap: 50px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .name-num .name {
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .actu-mot {
+  display: flex;
+  gap: 40px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .actu-mot .phone {
+  font-weight: 300;
+  color: #dddddd;
+  letter-spacing: 1px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .quote-callActions {
+  display: flex;
+  gap: 50px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .quote-callActions .callActions {
+  display: flex;
+  gap: 20px;
+}
+.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .quote-callActions .callActions .delete-action {
+  color: #ff0000;
+}/*# sourceMappingURL=dashSquelette.css.map */
