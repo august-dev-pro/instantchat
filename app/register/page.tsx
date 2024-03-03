@@ -1,4 +1,4 @@
-"use client";
+/* "use client"; */
 import "../globals.css";
 import RegisterForm from "../ui/forms/register-form";
 export default function register() {

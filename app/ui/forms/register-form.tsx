@@ -1,15 +1,15 @@
-"use client";
-import React, { useState } from "react";
+/* "use client"; */
+import React /* { useState } */ from "react";
 import "./formStyle.css";
 import Link from "next/link";
-import { useFormState } from "react-dom";
-import { registerUser } from "@/app/lib/actions";
+/* import { useFormState } from "react-dom";
+import { registerUser } from "@/app/lib/actions"; */
 
 const RegisterForm = () => {
-  const initialState = { message: "", errors: {} };
-  const [state, dispatch] = useFormState(registerUser, initialState);
+  /* const initialState = { message: "", errors: {} };
+  const [state, dispatch] = useFormState(registerUser, initialState); */
   return (
-    <form action={dispatch} className="register-form form">
+    <form /* action={dispatch} */ className="register-form form">
       <div className="reg-form_container form_container">
         <div className="reg-form_content form_content">
           <div className="form_header">
@@ -49,7 +49,7 @@ const RegisterForm = () => {
                 </Link>
               </div>
             </div>
-            <div className="message">{state.errorMessage}</div>
+            <div className="message">{/* {state.errorMessage} */}</div>
           </div>
         </div>
       </div>

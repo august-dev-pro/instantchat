@@ -1,9 +1,9 @@
-"use client";
+/* "use client"; */
 import React from "react";
 import "./formStyle.css";
 import Link from "next/link";
-import { useFormState, useFormStatus } from "react-dom";
-import { authenticate } from "@/app/lib/actions";
+/* import { useFormState, useFormStatus } from "react-dom";
+import { authenticate } from "@/app/lib/actions"; */
 
 const LoginForm = () => {
   //oconst initialState = { message: undefined, errors: {} };
