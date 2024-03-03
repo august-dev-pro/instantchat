@@ -88,7 +88,7 @@ export default function DashSquelette({
                             <div className="sender_profil picture">
                               <img
                                 src={`../../../../images/contacts/${contact.profilePic}.jpeg`}
-                                alt=""
+                                alt="tod_descr"
                               />
                             </div>
                             <div className="discuss_info description">
@@ -121,7 +121,7 @@ export default function DashSquelette({
                         <div className="contact_pic picture">
                           <img
                             src={`../../../../images/contacts/${contact.profilePic}.jpeg`}
-                            alt=""
+                            alt="tod_descr"
                           />
                         </div>
                         <div className="contact_desc description">
@@ -145,7 +145,7 @@ export default function DashSquelette({
                     <div className="picture">
                       <img
                         src={`../../../../images/contacts/${selectedDiscutContact.profilePic}.jpeg`}
-                        alt=""
+                        alt="tod_descr"
                       />
                     </div>
                   </div>
@@ -203,7 +203,7 @@ export default function DashSquelette({
                   <div className="picture">
                     <img
                       src={`../../../../images/contacts/${selectedContact.profilePic}.jpeg`}
-                      alt=""
+                      alt="tod_descr"
                     />
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export default function DashSquelette({
                     <div className="contact_pic picture">
                       <img
                         src={`../../../../images/contacts/${contact.profilePic}.jpeg`}
-                        alt=""
+                        alt="tod_descr"
                       />
                     </div>
                     <div className="contact_desc description">
@@ -270,7 +270,7 @@ export default function DashSquelette({
                 <div className="picture">
                   <img
                     src={`../../../../images/contacts/${selectedContact.profilePic}.jpeg`}
-                    alt=""
+                    alt="tod_descr"
                   />
                 </div>
               </div>

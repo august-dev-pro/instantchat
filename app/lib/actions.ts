@@ -1,15 +1,11 @@
 "use server";
-import { sql } from "@vercel/postgres";
-import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { destroyCookie, setCookie } from "nookies";
-import { signIn, signOut } from "../api/auth/[...nextAuth]";
-const bcrypt = require("bcrypt");
+//const bcrypt = require("bcrypt");
 
 // Fonction pour crypter un mot de passe
-async function encryptPassword(password: string, saltRounds: number) {
+/* async function encryptPassword(password: string, saltRounds: number) {
   try {
     // Générer un sel pour le hachage
     const salt = await bcrypt.genSalt(saltRounds);
@@ -20,9 +16,9 @@ async function encryptPassword(password: string, saltRounds: number) {
     console.error("Erreur lors du hachage du mot de passe :", err);
     throw err; // Gérer l'erreur ou la propager
   }
-}
+} */
 
-const FormSchema = z.object({
+/* const FormSchema = z.object({
   id: z.string(),
   userName: z.string({
     invalid_type_error: "Veuillez entrer un Nom d'utilisateur valide",
@@ -33,9 +29,9 @@ const FormSchema = z.object({
   password: z.string({
     invalid_type_error: "Veuillez entrer un mot de passe valide.",
   }),
-});
+}); */
 
-export type State = {
+/* export type State = {
   errors?: {
     userId?: string[];
     name?: string[];
@@ -45,17 +41,17 @@ export type State = {
     password?: string[];
   };
   message?: string | null;
-};
+}; */
 
-export type useFormState = {
+/* export type useFormState = {
   errors?: {
     validatedFields?: string[];
   };
   message?: "Missing Fields. Failed to Create Invoice.";
-};
+}; */
 
-const CreateUser = FormSchema.omit({ id: true });
-export async function registerUser(prevState: State, formData: FormData) {
+//const CreateUser = FormSchema.omit({ id: true });
+/* export async function registerUser(prevState: State, formData: FormData) {
   console.log("registering user now...");
 
   const validatedFields = CreateUser.safeParse({
@@ -99,9 +95,9 @@ export async function registerUser(prevState: State, formData: FormData) {
   revalidatePath("/register");
   //console.log("user is register");
   redirect("/login");
-}
+} */
 
-export async function authenticate(
+/* export async function authenticate(
   prevState: string | undefined,
   formData: FormData
 ) {
@@ -118,9 +114,9 @@ export async function authenticate(
     }
     throw error;
   }
-}
+} */
 
-export async function logOut() {
+/* export async function logOut() {
   try {
     await signOut();
     destroyCookie(null, "user_id");
@@ -131,4 +127,4 @@ export async function logOut() {
     }
     throw error;
   }
-}
+} */
