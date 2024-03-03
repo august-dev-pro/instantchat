@@ -7,6 +7,7 @@
   height: 45px;
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 .footer .footer_container .footer_content .field .icon {
   color: #fff !important;

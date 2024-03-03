@@ -1,28 +1,41 @@
+"use client";
 import Link from "next/link";
 import "./page.css";
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { db } from "./fireBaseConfig";
+import { collection, addDoc } from "firebase/firestore";
+import React, { useState } from "react";
+async function addData(name: string, email: string, message: string) {
+  try {
+    const docRef = await addDoc(collection(db, "message"), {
+      name: name,
+      email: email,
+      message: message,
+    });
+    console.log(`document writen with id ${docRef.id}`);
+    return true;
+  } catch (error) {
+    console.log(`error for trying: ${error}`);
+    return false;
+  }
+}
 export default function Home() {
-  // Your web app's Firebase configuration
+  //const [name, setName] = useState("")
+  const name = "augustin";
+  const email = "augustin@gmail.com";
+  const message = "lorem lorem lortzem lorem";
 
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  async function handlesubmit() {
+    console.log("handle submit clicked");
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBwOjM67NuWLGsc8EM22tADjDfTaNoT1sk",
-    authDomain: "instantchat-57a37.firebaseapp.com",
-    projectId: "instantchat-57a37",
-    storageBucket: "instantchat-57a37.appspot.com",
-    messagingSenderId: "992511153414",
-    appId: "1:992511153414:web:9e7dd0a66b6e9dd5ad3a87",
-    measurementId: "G-JW11WCK21R",
-  };
-
-  // Initialisez Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
+    const add = await addData(name, email, message);
+    if (add) {
+      console.log(
+        `added success for the store with: ${name}, ${email}, ${message}`
+      );
+    } else {
+      console.log(`added failled try again or see the console erreo`);
+    }
+  }
   return (
     <div className="home">
       <div className="home_container container">
@@ -37,6 +50,9 @@ export default function Home() {
               <Link href={"/register"}>
                 <button className="action">sInscrire</button>
               </Link>
+              <button onClick={() => handlesubmit()} className="action">
+                run code teste
+              </button>
               <Link href={"/login"}>
                 <button className="action">se Connecter</button>
               </Link>

@@ -7,6 +7,120 @@
         height: 100%;
         width: 100%;
 
+        .chield {
+            border: 2px solid #06938c00;
+            display: flex;
+            padding: 5px 15px;
+            gap: 20px;
+
+            .picture {
+                height: 50px;
+                width: 50px;
+
+                img {
+                    max-width: 100%;
+                    height: 50px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+
+            .description {
+                font-size: 15px;
+
+                //.name {}
+
+                .contact_phone_num {
+                    font-weight: 300;
+                    letter-spacing: 1px;
+                }
+
+                .last_message {
+                    font-weight: 200;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .chield.active {
+            border-color: #06938b !important;
+        }
+
+        .chield:hover {
+            background-color: #1f2a31;
+            cursor: pointer;
+        }
+
+        .screen_dash_content {
+            display: none;
+        }
+
+        .contact_show {
+
+            //padding: 30px;
+            .show_profil_pic {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .picture {
+                    height: 200px;
+                    width: 200px;
+
+                    img {
+                        max-width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            .show_contact_desc {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+
+                .name-num {
+                    display: flex;
+                    gap: 50px;
+
+                    .name {
+                        font-size: 25px;
+                        letter-spacing: 1px;
+                    }
+
+
+                }
+
+                .actu-mot {
+                    display: flex;
+                    gap: 40px;
+
+                    .phone {
+                        font-weight: 300;
+                        color: #dddddd;
+                        letter-spacing: 1px;
+                    }
+                }
+
+                .quote-callActions {
+                    display: flex;
+                    gap: 50px;
+
+                    .callActions {
+                        display: flex;
+                        gap: 20px;
+
+                        .delete-action {
+                            color: #ff0000;
+                        }
+                    }
+                }
+            }
+        }
+
         .dash_content {
             height: 100%;
             width: 100%;
@@ -272,10 +386,29 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .dash {
+        .dash_container {
+            .dash_content {
+                display: none;
+            }
+
+            .screen_dash_content {
+                display: block;
+                width: 100%;
 
                 .contact_show {
+                    width: 100%;
 
-                    //padding: 30px;
+                    padding-top: 30px;
+
                     .show_profil_pic {
                         display: flex;
                         justify-content: center;

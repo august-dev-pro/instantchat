@@ -41,12 +41,21 @@ export default function DashSquelette({
       }
     }
   }, [messageInput]);
+  // Fonction pour gérer le clic sur un contact
+  const handleContactClick = (contact: Contact) => {
+    setSelectedContact(contact); // Mettre à jour le contact sélectionné
+  };
 
+  // Fonction pour gérer le clic sur une discussion
+  const handleDiscussClick = (discussion: Discuss, contact: Contact) => {
+    setSelectedDiscut(discussion); // Mettre à jour la discussion sélectionnée
+    setselectedDiscutContact(contact); // Mettre à jour le contact de la discussion
+  };
   return (
     <div className={`${title} dash`}>
       <div className={`${title}_container dash_container`}>
         <div className={`${title}_content dash_content`}>
-          <div className="aside_show">
+          <div className={`aside_show`}>
             <div className="aside_show_container">
               <div className="aside_show_content">
                 <div className="title">{title}</div>
@@ -72,10 +81,9 @@ export default function DashSquelette({
                                 : ""
                             }`}
                             key={discussion.id}
-                            onClick={() => {
-                              setSelectedDiscut(discussion);
-                              setselectedDiscutContact(contact);
-                            }}
+                            onClick={() =>
+                              handleDiscussClick(discussion, contact)
+                            }
                           >
                             <div className="sender_profil picture">
                               <img
@@ -100,7 +108,7 @@ export default function DashSquelette({
                   {title === "contacts" &&
                     contacts &&
                     contacts.length > 0 &&
-                    contacts.map((contact: any) => (
+                    contacts.map((contact: Contact) => (
                       <div
                         className={`contact chield ${
                           selectedContact && selectedContact.id === contact.id
@@ -108,7 +116,7 @@ export default function DashSquelette({
                             : ""
                         }`}
                         key={contact.id}
-                        onClick={() => setSelectedContact(contact)}
+                        onClick={() => handleContactClick(contact)}
                       >
                         <div className="contact_pic picture">
                           <img
@@ -128,7 +136,7 @@ export default function DashSquelette({
               </div>
             </div>
           </div>
-          <div className="content_show_section">
+          <div className={`content_show_section `}>
             {/* Contenu de la section discussion_show */}
             {selectedDiscut && selectedDiscutContact && (
               <div className="discussion_show">
@@ -226,6 +234,72 @@ export default function DashSquelette({
               </div>
             )}
           </div>
+        </div>
+        <div className={`screen_${title}_content screen_dash_content`}>
+          {title === "contacts" &&
+            contacts &&
+            contacts.length > 0 &&
+            !selectedContact && (
+              <div className="contacts">
+                {contacts.map((contact: Contact) => (
+                  <div
+                    className={`contact chield`}
+                    key={contact.id}
+                    onClick={() => handleContactClick(contact)}
+                  >
+                    <div className="contact_pic picture">
+                      <img
+                        src={`../../../../images/contacts/${contact.profilePic}.jpeg`}
+                        alt=""
+                      />
+                    </div>
+                    <div className="contact_desc description">
+                      <div className="name">{contact.name}</div>
+                      <div className="contact_phone_num">
+                        {contact.phoneNumber}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+          {selectedContact && (
+            <div className="contact_show">
+              <div className="show_profil_pic">
+                <div className="picture">
+                  <img
+                    src={`../../../../images/contacts/${selectedContact.profilePic}.jpeg`}
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div className="show_contact_desc">
+                <div className="name">{selectedContact.name}</div>
+                {/* <div className="status">status: {selectedContact.status}</div> */}
+                <div className="actu-mot">
+                  <div className="phone">
+                    phone: {selectedContact.phoneNumber}
+                  </div>
+                  <div className="actu">{selectedContact.actu}</div>
+                </div>
+                <div className="quote-callActions">
+                  <div className="favorite-quote">
+                    {selectedContact.favoriteQuote}
+                  </div>
+                  <div className="callActions">
+                    <div className="delete-action">
+                      <FontAwesomeIcon icon={faTrash} />
+                    </div>
+                    <div className="send-message">
+                      <FontAwesomeIcon icon={faComment} />
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="location">{selectedContact.location}</div> */}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

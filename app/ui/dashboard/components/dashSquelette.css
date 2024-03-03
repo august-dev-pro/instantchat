@@ -8,6 +8,94 @@
   height: 100%;
   width: 100%;
 }
+.dash .dash_container .chield {
+  border: 2px solid rgba(6, 147, 140, 0);
+  display: flex;
+  padding: 5px 15px;
+  gap: 20px;
+}
+.dash .dash_container .chield .picture {
+  height: 50px;
+  width: 50px;
+}
+.dash .dash_container .chield .picture img {
+  max-width: 100%;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.dash .dash_container .chield .description {
+  font-size: 15px;
+}
+.dash .dash_container .chield .description .contact_phone_num {
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.dash .dash_container .chield .description .last_message {
+  font-weight: 200;
+  font-size: 14px;
+}
+.dash .dash_container .chield.active {
+  border-color: #06938b !important;
+}
+.dash .dash_container .chield:hover {
+  background-color: #1f2a31;
+  cursor: pointer;
+}
+.dash .dash_container .screen_dash_content {
+  display: none;
+}
+.dash .dash_container .contact_show .show_profil_pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dash .dash_container .contact_show .show_profil_pic .picture {
+  height: 200px;
+  width: 200px;
+}
+.dash .dash_container .contact_show .show_profil_pic .picture img {
+  max-width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.dash .dash_container .contact_show .show_contact_desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.dash .dash_container .contact_show .show_contact_desc .name-num {
+  display: flex;
+  gap: 50px;
+}
+.dash .dash_container .contact_show .show_contact_desc .name-num .name {
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+.dash .dash_container .contact_show .show_contact_desc .actu-mot {
+  display: flex;
+  gap: 40px;
+}
+.dash .dash_container .contact_show .show_contact_desc .actu-mot .phone {
+  font-weight: 300;
+  color: #dddddd;
+  letter-spacing: 1px;
+}
+.dash .dash_container .contact_show .show_contact_desc .quote-callActions {
+  display: flex;
+  gap: 50px;
+}
+.dash .dash_container .contact_show .show_contact_desc .quote-callActions .callActions {
+  display: flex;
+  gap: 20px;
+}
+.dash .dash_container .contact_show .show_contact_desc .quote-callActions .callActions .delete-action {
+  color: #ff0000;
+}
 .dash .dash_container .dash_content {
   height: 100%;
   width: 100%;
@@ -202,53 +290,67 @@
   align-items: center;
   justify-content: center;
 }
-.dash .dash_container .dash_content .content_show_section .contact_show .show_profil_pic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_profil_pic .picture {
-  height: 200px;
-  width: 200px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_profil_pic .picture img {
-  max-width: 100%;
-  height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 50%;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .name-num {
-  display: flex;
-  gap: 50px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .name-num .name {
-  font-size: 25px;
-  letter-spacing: 1px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .actu-mot {
-  display: flex;
-  gap: 40px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .actu-mot .phone {
-  font-weight: 300;
-  color: #dddddd;
-  letter-spacing: 1px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .quote-callActions {
-  display: flex;
-  gap: 50px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .quote-callActions .callActions {
-  display: flex;
-  gap: 20px;
-}
-.dash .dash_container .dash_content .content_show_section .contact_show .show_contact_desc .quote-callActions .callActions .delete-action {
-  color: #ff0000;
+
+@media screen and (max-width: 768px) {
+  .dash .dash_container .dash_content {
+    display: none;
+  }
+  .dash .dash_container .screen_dash_content {
+    display: block;
+    width: 100%;
+  }
+  .dash .dash_container .screen_dash_content .contact_show {
+    width: 100%;
+    padding-top: 30px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_profil_pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_profil_pic .picture {
+    height: 200px;
+    width: 200px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_profil_pic .picture img {
+    max-width: 100%;
+    height: 200px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 50%;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .name-num {
+    display: flex;
+    gap: 50px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .name-num .name {
+    font-size: 25px;
+    letter-spacing: 1px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .actu-mot {
+    display: flex;
+    gap: 40px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .actu-mot .phone {
+    font-weight: 300;
+    color: #dddddd;
+    letter-spacing: 1px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .quote-callActions {
+    display: flex;
+    gap: 50px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .quote-callActions .callActions {
+    display: flex;
+    gap: 20px;
+  }
+  .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .quote-callActions .callActions .delete-action {
+    color: #ff0000;
+  }
 }/*# sourceMappingURL=dashSquelette.css.map */

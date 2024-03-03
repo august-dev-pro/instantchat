@@ -37,6 +37,11 @@ a {
   flex-grow: 1;
 }
 /* Mobile */
+@media screen and (max-width: 420px) {
+  .container {
+    padding: 0 5%;
+  }
+}
 @media (max-width: 700px) {
 }
 

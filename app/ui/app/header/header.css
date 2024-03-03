@@ -42,4 +42,16 @@
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 420px) {
+  .header {
+    padding: 5px 0;
+  }
+  .header .header_container .header_content .logo-block .logo {
+    font-size: 18px;
+  }
+  .header .header_container .header_content .nav {
+    display: none;
+  }
 }/*# sourceMappingURL=header.css.map */
