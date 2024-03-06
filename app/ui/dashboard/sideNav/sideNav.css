@@ -49,6 +49,11 @@
 .dashboard_aside .dashboard_aside_container .dashboard_aside_content .active::before {
   background-color: #06938b;
 }
+@media screen and (max-width: 420px) {
+  .dashboard_aside .dashboard_aside_container .dashboard_aside_content .side_call_actions {
+    display: none !important;
+  }
+}
 @media screen and (max-width: 768px) {
   .dashboard_aside {
     height: -moz-fit-content;

@@ -2,7 +2,7 @@
 .home {
   display: flex;
   justify-content: center;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 115px);
   /* 100vh - (hauteur du header + hauteur du footer) */
   overflow-y: auto;
   align-items: center;

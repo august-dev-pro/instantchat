@@ -1,8 +1,44 @@
+@font-face {
+  font-family: "Kanit Black";
+  src: url("./ui/accessoires/Kanit/Kanit-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit Bold";
+  src: url("./ui/accessoires/Kanit/Kanit-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit ExtraBold";
+  src: url("./ui/accessoires/Kanit/Kanit-ExtraBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit ExtraLight";
+  src: url("./ui/accessoires/Kanit/Kanit-ExtraLight.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit Light";
+  src: url("./ui/accessoires/Kanit/Kanit-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit Medium";
+  src: url("./ui/accessoires/Kanit/Kanit-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit Regular";
+  src: url("./ui/accessoires/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit SemiBold";
+  src: url("./ui/accessoires/Kanit/Kanit-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit Black Italic";
+  src: url("./ui/accessoires/Kanit/Kanit-BlackItalic.ttf") format("truetype");
+}
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "kanit", sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 
 html,

@@ -2,11 +2,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./dashSquelette.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowLeftLong,
+  faComment,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { Contact, Discuss } from "../test/type";
 import { getLastMessage, reduceMessage } from "../test/data";
 import { faSmile } from "@fortawesome/free-regular-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import SideNav from "../sideNav/SideNav";
 export default function DashSquelette({
   title,
   contacts = null,
@@ -22,7 +28,7 @@ export default function DashSquelette({
     useState<Contact | null>(null);
   const [messageInput, setMessageInput] = useState(""); // État pour le contenu de la zone de saisie de message
   const textareaRef = useRef<HTMLTextAreaElement>(null); // Référence à l'élément textarea
-
+  //const [isChieldSelected, setIsChieldSelected] = useState(null);
   const handleMessageInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -51,6 +57,7 @@ export default function DashSquelette({
     setSelectedDiscut(discussion); // Mettre à jour la discussion sélectionnée
     setselectedDiscutContact(contact); // Mettre à jour le contact de la discussion
   };
+
   return (
     <div className={`${title} dash`}>
       <div className={`${title}_container dash_container`}>
@@ -236,6 +243,7 @@ export default function DashSquelette({
           </div>
         </div>
         <div className={`screen_${title}_content screen_dash_content`}>
+          {/* <SideNav isChieldSelected={isChieldSelected} /> */}
           {title === "contacts" &&
             contacts &&
             contacts.length > 0 &&
@@ -263,6 +271,47 @@ export default function DashSquelette({
                 ))}
               </div>
             )}
+          {title === "discuss" &&
+            discuss &&
+            discuss.length > 0 &&
+            contacts &&
+            !selectedDiscut &&
+            discuss.map((discussion: Discuss) => {
+              // Trouver le contact correspondant à cette discussion
+              const contact = contacts.find(
+                (contact: any) => contact.id === discussion.contactId
+              );
+
+              // Si le contact est trouvé, afficher les détails de la discussion
+              if (contact) {
+                return (
+                  <div
+                    className={`discut chield`}
+                    key={discussion.id}
+                    onClick={() => {
+                      handleDiscussClick(discussion, contact);
+                      //  setIsChieldSelected(contact);
+                    }}
+                  >
+                    <div className="sender_profil picture">
+                      <img
+                        src={`../../../../images/contacts/${contact.profilePic}.jpeg`}
+                        alt="tod_descr"
+                      />
+                    </div>
+                    <div className="discuss_info description">
+                      <div className="sender_name">{contact.name}</div>
+                      <div className="last_message">
+                        {reduceMessage(
+                          getLastMessage(discussion.messages).text,
+                          25
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            })}
 
           {selectedContact && (
             <div className="contact_show">
@@ -297,6 +346,68 @@ export default function DashSquelette({
                   </div>
                 </div>
                 {/* <div className="location">{selectedContact.location}</div> */}
+              </div>
+            </div>
+          )}
+          {selectedDiscut && selectedDiscutContact && (
+            <div className="discussion_show">
+              <div className="contact">
+                <div className="back_action">
+                  <FontAwesomeIcon icon={faArrowLeftLong} />
+                </div>
+                <div className="profil_pic">
+                  <div className="picture">
+                    <img
+                      src={`../../../../images/contacts/${selectedDiscutContact.profilePic}.jpeg`}
+                      alt="tod_descr"
+                    />
+                  </div>
+                </div>
+                <div className="contact-des">
+                  <div className="name">{selectedDiscutContact.name}</div>
+                  <div className="phone">
+                    phone: {selectedDiscutContact.phoneNumber}
+                  </div>
+                </div>
+              </div>
+              <div className="discussion_block">
+                <div className="discussion">
+                  <div className="discussion_content">
+                    {selectedDiscut.messages
+                      .slice()
+                      .reverse()
+                      .map((message, index) => (
+                        <div
+                          className={`message ${
+                            message.status === "envoyé" ? "sent" : "received"
+                          }`}
+                          key={index}
+                        >
+                          <div className="message_text">{message.text}</div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+                <div className="message-input">
+                  <div className="emoji">
+                    <FontAwesomeIcon icon={faSmile} />
+                  </div>
+                  {/* Zone de saisie de message */}
+                  <div className="espace-send">
+                    <textarea
+                      className="input"
+                      ref={textareaRef}
+                      //value={messageInput}
+                      onChange={handleMessageInputChange}
+                      placeholder="Tapez votre message ici..."
+                    ></textarea>
+                    {messageInput != "" && (
+                      <div className="send-btn">
+                        <FontAwesomeIcon icon={faPaperPlane} />
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           )}
