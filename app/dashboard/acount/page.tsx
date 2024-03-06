@@ -1,6 +1,6 @@
 import React from "react";
 
-const page = ({ setIsChieldSelected }: { setIsChieldSelected: Function }) => {
+const page = () => {
   return (
     <div>
       <h1>acount</h1>
