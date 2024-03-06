@@ -243,7 +243,7 @@ export default function DashSquelette({
           </div>
         </div>
         <div className={`screen_${title}_content screen_dash_content`}>
-          {/* <SideNav isChieldSelected={isChieldSelected} /> */}
+          <SideNav />
           {title === "contacts" &&
             contacts &&
             contacts.length > 0 &&
