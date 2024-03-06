@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import "./page.css";
+import "./globals.css";
 import React, { useState } from "react";
 
 export default function Home() {
