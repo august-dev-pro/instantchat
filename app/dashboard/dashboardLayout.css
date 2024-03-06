@@ -17,11 +17,6 @@
   width: 100%;
 }
 
-@media screen and (max-width: 420px) {
-  .dashboard {
-    height: calc(100vh - 80px);
-  }
-}
 @media screen and (max-width: 768px) {
   .dashboard {
     height: calc(100vh - 65px);
@@ -35,5 +30,11 @@
   }
   .dashboard .dashboard_container .dashboard_content .show {
     width: 100%;
+    height: inherit;
+  }
+}
+@media screen and (max-width: 420px) {
+  .dashboard {
+    height: calc(100vh - 80px);
   }
 }/*# sourceMappingURL=dashboardLayout.css.map */
