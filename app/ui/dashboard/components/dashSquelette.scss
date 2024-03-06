@@ -435,7 +435,7 @@
 
                     .discussion {
                         //background-color: #303df1;
-                        padding: 0 20px;
+                        padding: 0 10px;
 
                         .discussion_content {
                             padding: 20px 0;
@@ -454,6 +454,7 @@
                                     padding: 10px;
                                     border-radius: 1rem;
                                     font-weight: 300;
+                                    max-width: 70% !important;
                                 }
                             }
 
@@ -464,9 +465,8 @@
 
                                 .message_text {
                                     border-top-left-radius: 0;
-                                    max-width: 50%;
-                                    text-align: justify;
                                     background-color: #2d404d;
+                                    //                                   text-align: center;
                                 }
                             }
 
@@ -477,8 +477,7 @@
 
                                 .message_text {
                                     border-bottom-right-radius: 0;
-                                    max-width: 50%;
-                                    text-align: justify;
+                                    //                                    text-align: right;
                                     background-color: #06938c67;
                                 }
                             }

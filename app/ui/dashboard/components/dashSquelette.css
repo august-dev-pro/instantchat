@@ -316,7 +316,7 @@
     grid-template-rows: 1fr auto;
   }
   .dash .dash_container .discussion_show .discussion_block .discussion {
-    padding: 0 20px;
+    padding: 0 10px;
   }
   .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content {
     padding: 20px 0;
@@ -332,6 +332,7 @@
     padding: 10px;
     border-radius: 1rem;
     font-weight: 300;
+    max-width: 70% !important;
   }
   .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.received {
     display: flex;
@@ -339,8 +340,6 @@
   }
   .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.received .message_text {
     border-top-left-radius: 0;
-    max-width: 50%;
-    text-align: justify;
     background-color: #2d404d;
   }
   .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.sent {
@@ -349,8 +348,6 @@
   }
   .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.sent .message_text {
     border-bottom-right-radius: 0;
-    max-width: 50%;
-    text-align: justify;
     background-color: rgba(6, 147, 140, 0.4039215686);
   }
   .dash .dash_container .discussion_show .discussion_block .message-input {

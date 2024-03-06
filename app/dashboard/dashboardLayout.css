@@ -35,6 +35,6 @@
 }
 @media screen and (max-width: 420px) {
   .dashboard {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 80px);
   }
 }/*# sourceMappingURL=dashboardLayout.css.map */
