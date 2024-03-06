@@ -1,10 +1,6 @@
 import React from "react";
 
-async function page({
-  setIsChieldSelected,
-}: {
-  setIsChieldSelected: Function;
-}) {
+async function page() {
   return (
     <div>
       <h1>dashboard</h1>
