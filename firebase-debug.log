@@ -1,0 +1,21 @@
+[debug] [2024-03-15T17:06:27.432Z] ----------------------------------------------------------------------
+[debug] [2024-03-15T17:06:27.436Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-15T17:06:27.437Z] CLI Version:   13.5.1
+[debug] [2024-03-15T17:06:27.438Z] Platform:      win32
+[debug] [2024-03-15T17:06:27.439Z] Node Version:  v18.17.1
+[debug] [2024-03-15T17:06:27.440Z] Time:          Fri Mar 15 2024 17:06:27 GMT+0000 (heure moyenne de Greenwich)
+[debug] [2024-03-15T17:06:27.441Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-15T17:06:27.456Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-15T17:06:27.457Z] > authorizing via signed-in user (augustinselete01@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\HP\instantchat
+

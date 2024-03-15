@@ -7,13 +7,21 @@ import { Analytics, getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD4IULqb9RezlIYvo7_NetmgAVTjism41s",
-  authDomain: "chat-app-project-fffa7.firebaseapp.com",
-  projectId: "chat-app-project-fffa7",
-  storageBucket: "chat-app-project-fffa7.appspot.com",
-  messagingSenderId: "6903424080",
-  appId: "1:6903424080:web:c202e8c7d06679022e9d55",
-  measurementId: "G-Z3JT33QC8K",
+  apiKey: "AIzaSyBigX6X3AB9xj8nUdZaMM-_sGQorlJQu6k",
+
+  authDomain: "next-chat-app-project.firebaseapp.com",
+
+  databaseURL: "https://next-chat-app-project-default-rtdb.firebaseio.com",
+
+  projectId: "next-chat-app-project",
+
+  storageBucket: "next-chat-app-project.appspot.com",
+
+  messagingSenderId: "655497317696",
+
+  appId: "1:655497317696:web:1d16c078ad191d6c053ea5",
+
+  measurementId: "G-8X5ESTTCKE",
 };
 
 // Initialize Firebase
