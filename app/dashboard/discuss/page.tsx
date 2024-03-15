@@ -1,5 +1,5 @@
 import DashSquelette from "@/app/ui/dashboard/components/DashSquelette";
-import { discuss, contacts } from "@/app/ui/dashboard/test/data";
+import { discuss, users } from "@/app/ui/dashboard/test/data";
 
 import React from "react";
 
@@ -9,6 +9,7 @@ interface PageProps {
 }
 
 const page = () => {
+  const contacts = users;
   return (
     <DashSquelette title="discuss" discuss={discuss} contacts={contacts} />
   );

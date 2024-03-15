@@ -14,7 +14,7 @@ export interface Discuss {
   messages: Message[];
 }
 
-export interface Contact {
+export interface User {
   id: number;
   name: string;
   profilePic: string;

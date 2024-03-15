@@ -1,8 +1,9 @@
 import DashSquelette from "@/app/ui/dashboard/components/DashSquelette";
 import React from "react";
-import { contacts } from "../../ui/dashboard/test/data";
+import { users } from "../../ui/dashboard/test/data";
 
 const page = () => {
+  const contacts = users;
   return <DashSquelette title="contacts" contacts={contacts} />;
 };
 

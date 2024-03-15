@@ -2,13 +2,9 @@
 import Link from "next/link";
 import "./page.css";
 import "./globals.css";
-import React, { useState } from "react";
+import React from "react";
 
 export default function Home() {
-  //const [name, setName] = useState("")
-  const name = "augustin";
-  const email = "augustin@gmail.com";
-  const message = "lorem lorem lortzem lorem";
   return (
     <div className="home">
       <div className="home_container container">
