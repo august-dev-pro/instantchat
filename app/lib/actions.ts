@@ -128,3 +128,19 @@ import { z } from "zod";
     throw error;
   }
 } */
+
+export const getLastMessage = async (donneesDiscussion: any): Promise<any> => {
+  // Vérifier si les données de la discussion existent et ont des messages
+  if (
+    !donneesDiscussion ||
+    !donneesDiscussion.messages ||
+    !donneesDiscussion.messages.length
+  ) {
+    return null;
+  }
+
+  // Attendre la résolution de la promesse et retourner le dernier message dans les données de la discussion
+  return await Promise.resolve(
+    donneesDiscussion.messages[donneesDiscussion.messages.length - 1]
+  );
+};

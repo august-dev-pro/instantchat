@@ -36,7 +36,12 @@
   display: flex;
   gap: 30px;
 }
-.header .header_container .header_content .nav .nav_container .nav_content .acount {
+.header .header_container .header_content .nav .nav_container .nav_content .user {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.header .header_container .header_content .nav .nav_container .nav_content .user .acount {
   height: 40px;
   width: 40px;
   background-color: #fff;

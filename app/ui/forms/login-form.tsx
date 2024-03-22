@@ -1,16 +1,31 @@
-/* "use client"; */
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "./formStyle.css";
 import Link from "next/link";
-/* import { useFormState, useFormStatus } from "react-dom";
-import { authenticate } from "@/app/lib/actions"; */
+import { SignOutUser, signInUser } from "@/firebaseDatabase";
 
 const LoginForm = () => {
-  //oconst initialState = { message: undefined, errors: {} };
-  /*   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
-   */
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (event: any) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: any) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    console.log("is sabmit singin");
+
+    signInUser(email, password);
+    setEmail("");
+    setPassword("");
+  };
   return (
-    <form /* action={dispatch} */ className="login-form form">
+    <form onSubmit={handleSubmit} className="login-form form">
       <div className="log-form_container form_container">
         <div className="log-form_content form_content">
           <div className="form_header">
@@ -21,21 +36,29 @@ const LoginForm = () => {
               className="flex h-8 items-end space-x-1"
               aria-live="polite"
               aria-atomic="true"
-            >
-              {/*  {errorMessage && (
-                <>
-                  <p className="message">{errorMessage}</p>
-                </>
-              )} */}
-            </div>
+            ></div>
             <div className="saisies">
               <div className="chield">
                 <label htmlFor="email">email</label>
-                <input type="email" id="email" name="email" required />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={email}
+                  onChange={handleEmailChange}
+                />
               </div>
               <div className="chield">
                 <label htmlFor="email">password</label>
-                <input type="password" id="password" name="password" required />
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
               </div>
             </div>
             <div className="form_btn">
@@ -47,6 +70,14 @@ const LoginForm = () => {
                 <Link href="/register" className="login" type="submit">
                   Inscrivez-vous
                 </Link>
+              </div>
+              <div
+                className="n"
+                onClick={() => {
+                  SignOutUser();
+                }}
+              >
+                deconexion
               </div>
             </div>
           </div>

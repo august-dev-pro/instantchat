@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 550px;
+  background-color: #fff;
 }
 .form .form_container {
   width: 680px;

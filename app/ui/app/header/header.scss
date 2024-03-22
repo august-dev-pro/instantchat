@@ -44,13 +44,22 @@
                             gap: 30px;
                         }
 
-                        .acount {
-                            height: 40px;
-                            width: 40px;
-                            background-color: #fff;
-                            border-radius: 50%;
-                            cursor: pointer;
+                        .user {
+                            display: flex;
+                            gap: 2px;
+                            align-items: center;
+
+                            .acount {
+                                height: 40px;
+                                width: 40px;
+                                background-color: #fff;
+                                border-radius: 50%;
+                                cursor: pointer;
+                            }
                         }
+
+
+
                     }
                 }
             }

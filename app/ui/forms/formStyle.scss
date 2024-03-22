@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 550px;
+    background-color: #fff;
 
     .form_container {
         width: 680px;
@@ -23,6 +24,7 @@
                     background-color: #0bebe011;
                     border-bottom: 1px solid #1f2a3125;
                     letter-spacing: 1px;
+                    // color: #fff;
                     //border-bottom: 1px solid #00e1ff;
                 }
             }
@@ -33,6 +35,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                // background-color: #ffffff88;
 
                 .saisies {
                     display: grid;

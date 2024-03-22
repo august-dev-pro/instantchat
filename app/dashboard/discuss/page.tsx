@@ -1,18 +1,16 @@
+"use client";
 import DashSquelette from "@/app/ui/dashboard/components/DashSquelette";
-import { discuss, users } from "@/app/ui/dashboard/test/data";
+import { app, database } from "@/firebaseConfig";
+import { getUserContacts, getUserDiscuss, getUsers } from "@/firebaseDatabase";
+import { getAuth } from "firebase/auth";
 
-import React from "react";
-
-interface PageProps {
-  isChieldSelected: boolean; // Déclarer la prop isChieldSelected
-  setIsChieldSelected: any;
-}
+import React, { useEffect, useState } from "react";
 
 const page = () => {
-  const contacts = users;
-  return (
-    <DashSquelette title="discuss" discuss={discuss} contacts={contacts} />
-  );
+  //const contacts = users;
+  //const [userDiscuss, setuserDiscuss] = useState(null);
+
+  return <DashSquelette title="discuss" /* contacts={users} */ />;
 };
 
 export default page;

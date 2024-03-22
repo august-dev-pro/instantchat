@@ -28,6 +28,9 @@
 .dash .dash_container .chield .description {
   font-size: 15px;
 }
+.dash .dash_container .chield .description .name {
+  text-transform: capitalize;
+}
 .dash .dash_container .chield .description .contact_phone_num {
   font-weight: 300;
   letter-spacing: 1px;
@@ -285,9 +288,133 @@
   background-color: #1f2a31;
   cursor: pointer;
 }
-.dash .dash_container .dash_content .content_show_section {
-  /* justify-content: center;
-  align-items: center; */
+.dash .dash_container .dash_content .content_show_section .addNewContactModale {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  box-shadow: 0px 0px 5px 0px #06938b;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .sec_header {
+  border-bottom: 1px solid #06938b;
+  padding: 10px 5px;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .sec_header .titlte {
+  text-transform: uppercase;
+  text-align: center;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts {
+  padding: 5px;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 10px 0;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .search_user_input {
+  border: none;
+  border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  padding: 7px 0;
+  padding-left: 10px;
+  outline: none;
+  /* Supprime le contour de focus */
+  box-shadow: none;
+  /* Supprime toute ombre de focus */
+  font-size: 15px;
+  font-weight: 600;
+  color: #3f3f3f;
+  background-color: #646566;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .handle_search_btn {
+  padding: 0 7px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #06938b;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .handle_search_btn:hover {
+  background-color: #03d3c8;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description {
+  display: flex;
+  gap: 5px;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic img {
+  max-width: 100%;
+  max-width: 50px;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_des .contact_name {
+  text-transform: capitalize;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_des .phone {
+  font-weight: 200;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .add {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px 15px;
+  color: #06938b;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: all 0.2s;
+  border: 1px solid #06938b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .add:hover {
+  background-color: #06938b;
+  color: #fff;
+}
+.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contact:hover {
+  background-color: #324958;
+}
+
+.add_btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px 15px;
+  color: #06938b;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 20px;
+  transition: all 0.2s;
+  border: 1px solid #06938b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add_btn:hover {
+  background-color: #06938b;
+  color: #fff;
 }
 
 @media screen and (max-width: 768px) {

@@ -25,3 +25,13 @@ export interface User {
   location: string;
   // Ajoutez d'autres champs si nécessaire
 }
+export interface Contact {
+  id: string;
+  name: string;
+  profilePic: string;
+  status: string;
+  phoneNumber: string;
+  actu: string;
+  favoriteQuote: string;
+  location: string;
+}

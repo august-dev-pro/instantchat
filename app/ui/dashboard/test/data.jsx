@@ -489,17 +489,21 @@ export const discuss = [
 export function getSender(id) {
   return contacts.find((contact) => contact.id === id);
 }
-export function getLastMessage(messages) {
-  // Triez les messages par date d'envoi/reception
-  const sortedMessages = messages.sort((a, b) => {
-    const dateA = new Date(a.sentTime || a.receivedTime);
-    const dateB = new Date(b.sentTime || b.receivedTime);
-    return dateB - dateA; // Triez du plus récent au plus ancien
+export const getLastMessage = (messages) => {
+  if (!Array.isArray(messages)) {
+    // Vérifier si messages n'est pas un tableau
+    return null; // Ou une valeur par défaut selon votre logique
+  }
+
+  // Tri des messages par date décroissante
+  messages.sort((a, b) => {
+    const dateA = new Date(a.timestamp);
+    const dateB = new Date(b.timestamp);
+    return dateB - dateA;
   });
 
-  // Retournez le premier message (le plus récent)
-  return sortedMessages[0];
-}
+  return messages[0]; // Renvoyer le dernier message après le tri
+};
 
 export function reduceMessage(nomArticle, longueurLimite) {
   if (nomArticle.length > longueurLimite) {
