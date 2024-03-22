@@ -178,6 +178,17 @@
   text-align: justify;
   background-color: rgba(6, 147, 140, 0.4039215686);
 }
+.dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.system-message {
+  display: flex;
+  justify-content: center;
+}
+.dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.system-message .message_text {
+  max-width: 50%;
+  text-align: justify;
+  background-color: rgba(0, 0, 0, 0.2549019608);
+  color: #dddddd;
+  font-size: 15px;
+}
 .dash .dash_container .discussion_show .discussion_block .message-input {
   padding: 5px 20px;
   display: grid;

@@ -221,6 +221,21 @@
                                 background-color: #06938c67;
                             }
                         }
+
+                        .message.system-message {
+                            //background-color: #0077ff;
+                            display: flex;
+                            justify-content: center;
+
+                            .message_text {
+                                max-width: 50%;
+                                text-align: justify;
+                                background-color: #00000041;
+                                color: #dddddd;
+                                font-size: 15px;
+                                // border: 1px solid #06938c6c;
+                            }
+                        }
                     }
                 }
 

@@ -29,7 +29,7 @@ export default function Home() {
     }); */
 
   const [userData, setUserData] = useState<any[]>([]);
-  useEffect(() => {
+  /*   useEffect(() => {
     const currentUser = getAuth().currentUser;
     console.log(currentUser?.uid);
     const fetchUserData = async () => {
@@ -38,8 +38,8 @@ export default function Home() {
       }
     };
     fetchUserData();
-    //  listenForUserData(setUserData, currentUser?.uid);
-  }, []);
+      listenForUserData(setUserData, currentUser?.uid);
+  }, []); */
 
   //console.log(`users data: ${JSON.stringify(userData)}`);
   return (

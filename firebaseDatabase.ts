@@ -19,7 +19,6 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Timestamp, serverTimestamp } from "firebase/firestore/lite";
-import { Elsie } from "next/font/google";
 
 /* fonction d'inscription */
 /* export async function writeUserDataContacts(userIdToUpdate: string) {
@@ -175,7 +174,7 @@ export const userIsAuth = () => {
   return user;
 };
 
-export async function writeMessage(message: Message, discussId: string) {
+export async function writeMessage(message: Message, discussId: any) {
   try {
     const messageRef = ref(database, `discussions/${discussId}/messages`);
     // Push le nouveau message
@@ -214,11 +213,32 @@ export async function sendMessage(
   }
 }
 
-export async function createDiscussion(
+// Fonction pour vérifier si une discussion existe déjà entre deux utilisateurs
+export function isDiscussionExists(
+  discussions: Discuss[],
+  userId1: string,
+  userId2: string
+) {
+  return discussions.find(
+    (discussion) =>
+      (discussion.participants.user1Id === userId1 &&
+        discussion.participants.user2Id === userId2) ||
+      (discussion.participants.user1Id === userId2 &&
+        discussion.participants.user2Id === userId1)
+  );
+}
+
+/* export async function createDiscuss(
   currentUserId: string,
   otherUserId: string
-) {
+): Promise<Discuss | null> {
   try {
+    const welcomeMessage: Message = {
+      senderId: "RVyciryyrNbtHDFUhvZSr1RxHKz1",
+      content: "Bienvenue dans votre nouvel discussion",
+      writeDate: Timestamp.now().toDate().toDateString(),
+      writeTime: Timestamp.now().toDate().toTimeString(),
+    };
     const discussAuthors: Discuss = {
       participants: {
         user1Id: currentUserId,
@@ -236,10 +256,93 @@ export async function createDiscussion(
     const discussionId = newDiscussionRef.key;
 
     console.log(`Discussion créée avec succès. ID : ${discussionId}`);
+
+    // Créer un objet Discussion avec l'ID généré et les autres informations
+    const newDiscussion = {
+      id: discussionId,
+      ...discussAuthors,
+    };
+
+    // Retourner la nouvelle discussion
+    return newDiscussion;
   } catch (error: any) {
     console.error(
       `Une erreur est survenue lors de la création de la discussion : ${error.message}`
     );
+    return null; // En cas d'erreur, retourner null
+  }
+} */
+
+export async function createDiscuss(
+  currentUserId: string,
+  otherUserId: string
+): Promise<Discuss | null> {
+  try {
+    const discussAuthors: Discuss = {
+      participants: {
+        user1Id: currentUserId,
+        user2Id: otherUserId,
+      },
+      message: [],
+    };
+
+    // Pousser la nouvelle discussion dans la base de données
+    const newDiscussionRef = await push(
+      ref(database, "discussions"),
+      discussAuthors
+    );
+
+    // Récupérer l'ID généré de la discussion
+    const discussionId = newDiscussionRef.key;
+
+    console.log(`Discussion créée avec succès. ID : ${discussionId}`);
+
+    // Créer un objet Discussion avec l'ID généré et les autres informations
+    const newDiscussion = {
+      id: discussionId,
+      ...discussAuthors,
+    };
+
+    // Envoyer un message de bienvenue
+    const welcomeMessage: Message = {
+      senderId: "system", // Un identifiant spécial pour les messages du système
+      content: "Bienvenue dans votre nouvelle discussion !", // Contenu du message de bienvenue
+      writeDate: new Date().toDateString(), // Date d'écriture du message
+      writeTime: new Date().toTimeString(), // Heure d'écriture du message
+    };
+
+    // Ajouter le message de bienvenue à la discussion
+    await writeMessage(welcomeMessage, discussionId);
+
+    // Retourner la nouvelle discussion
+    return newDiscussion;
+  } catch (error: any) {
+    console.error(
+      `Une erreur est survenue lors de la création de la discussion : ${error.message}`
+    );
+    return null; // En cas d'erreur, retourner null
+  }
+}
+// Fonction pour créer une nouvelle discussion si elle n'existe pas déjà
+export async function createDiscussIfNotExists(
+  currentUserId: string,
+  otherUserId: string,
+  setSelectedDiscuss: any
+) {
+  try {
+    const discussions = await getDiscuss();
+    const discuss = isDiscussionExists(discussions, currentUserId, otherUserId);
+    if (discuss) {
+      setSelectedDiscuss(discuss);
+    } else {
+      const newDiscuss = await createDiscuss(currentUserId, otherUserId);
+      setSelectedDiscuss(newDiscuss);
+    }
+  } catch (error: any) {
+    console.error(
+      `Erreur lors de la création ou de la vérification de la discussion : ${error.message}`
+    );
+    throw error;
   }
 }
 
@@ -281,11 +384,14 @@ export async function getDiscuss(): Promise<any[]> {
 
       const messagesArray: any[] = [];
 
-      // Convertir les messages en tableau d'objets avec id inclus
-      Object.keys(discussionData.messages).forEach((messageId) => {
-        const messageData = discussionData.messages[messageId];
-        messagesArray.push({ id: messageId, ...messageData });
-      });
+      // Vérifier si la propriété messages existe et est définie
+      if (discussionData.messages) {
+        // Convertir les messages en tableau d'objets avec id inclus
+        Object.keys(discussionData.messages).forEach((messageId) => {
+          const messageData = discussionData.messages[messageId];
+          messagesArray.push({ id: messageId, ...messageData });
+        });
+      }
 
       const discuss = {
         id: discussionId, // Ajout de l'ID de la discussion

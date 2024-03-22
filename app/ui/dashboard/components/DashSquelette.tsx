@@ -10,6 +10,7 @@ import { User } from "../../interfaces/interface";
 import { getAuth } from "firebase/auth";
 import {
   addNewContact,
+  createDiscussIfNotExists,
   getUserContacts,
   getUserDiscuss,
   getUsers,
@@ -54,9 +55,7 @@ export default function DashSquelette({
   const [StartNewDiscussDisplay, setStartNewDiscussDisplay] =
     useState<boolean>(false);
   const [successContact, setSuccessContact] = useState<any[]>([]); // Utilisez un tableau pour stocker les contacts
-  const [lastMessages, setLastMessages] = useState<{ [key: string]: string }>(
-    {}
-  ); // État pour stocker les derniers messages de chaque discussion
+  const [lastMessages, setLastMessages] = useState<any>({}); // État pour stocker les derniers messages de chaque discussion
   const [search, setsearch] = useState("");
   //console.log(`users discuss: ${JSON.stringify(discuss)}`);
 
@@ -145,16 +144,15 @@ export default function DashSquelette({
   useEffect(() => {
     // Fonction pour récupérer le dernier message de chaque discussion
     const fetchLastMessages = async () => {
-      const messages: { [key: string]: string } = {};
       for (const discussion of discuss) {
         try {
           const lastMessage = await getLastMessage(discussion);
-          messages[discussion.id] = lastMessage?.content || ""; // Stocker le contenu du dernier message
+          setLastMessages(lastMessage);
         } catch (error) {
           console.error("Une erreur s'est produite :", error);
         }
       }
-      setLastMessages(messages); // Mettre à jour les derniers messages une fois qu'ils sont récupérés
+      //   setLastMessages(messages); // Mettre à jour les derniers messages une fois qu'ils sont récupérés
     };
 
     fetchLastMessages();
@@ -166,7 +164,7 @@ export default function DashSquelette({
     setSelectedContact(null);
     setAddNewContactDisplay(true);
   };
-  const handleStartNewDiscuss = () => {
+  const handleStartNewDiscussDisplay = () => {
     setSelectedDiscut(null);
     setStartNewDiscussDisplay(true);
   };
@@ -200,7 +198,37 @@ export default function DashSquelette({
     }
   };
 
-  console.log(`user is: ${JSON.stringify(userData)}`);
+  //start new discuss
+  const handleStartNewDiscuss = async (
+    userId: string,
+    friendUserId: string
+  ) => {
+    try {
+      setStartNewDiscussDisplay(false);
+      await createDiscussIfNotExists(userId, friendUserId, setSelectedDiscut);
+    } catch (error) {
+      console.log("erreur lors de la creation de la discussion:", error);
+    }
+  };
+  //  console.log(`user is: ${JSON.stringify(contacts)}`);
+
+  useEffect(() => {
+    // Fonction pour récupérer le dernier message de chaque discussion
+    const fetchLastMessages = async () => {
+      const messages: { discussId: string; user: any }[] = [];
+      for (const discussion of discuss) {
+        try {
+          // const lastMessage = await getLastMessages(discussion);
+          // console.log("donnes de discussion", JSON.stringify(lastMessage));
+        } catch (error) {
+          console.error("Une erreur s'est produite :", error);
+        }
+      }
+      // setLastMessages(messages); // Mettre à jour les derniers messages une fois qu'ils sont récupérés
+    };
+
+    fetchLastMessages();
+  }, [discuss]);
 
   return (
     <div className={`${title} dash`}>
@@ -263,12 +291,12 @@ export default function DashSquelette({
                                   {contact.username}
                                 </div>
                                 <div className="last_message">
-                                  {lastMessages[discussion.id]
-                                    ? reduceMessage(
-                                        lastMessages[discussion.id],
-                                        25
-                                      )
+                                  {lastMessages.id
+                                    ? reduceMessage(lastMessages.content, 25)
                                     : "Aucun message"}
+                                </div>
+                                <div className="time">
+                                  {reduceMessage(lastMessages.writeTime, 5)}
                                 </div>
                               </div>
                             </div>
@@ -292,7 +320,7 @@ export default function DashSquelette({
                       </div>
                       <div
                         className="add_btn call_action"
-                        onClick={handleStartNewDiscuss}
+                        onClick={handleStartNewDiscussDisplay}
                       >
                         nouveau contact <FontAwesomeIcon icon={faMessage} />
                         <FontAwesomeIcon icon={faPlus} />
@@ -380,9 +408,11 @@ export default function DashSquelette({
                         : Object.values(selectedDiscut.messages).map(
                             (message: any, index: number) => (
                               <div
-                                className={`message ${
+                                className={`message  ${
                                   message.senderId === user.uid
                                     ? "sent"
+                                    : message.senderId === "system"
+                                    ? "system-message"
                                     : "received"
                                 }`}
                                 key={index}
@@ -534,37 +564,51 @@ export default function DashSquelette({
                   <div className="sec_header">
                     <div className="titlte">Nouvelle Discussion</div>
                   </div>
-                  {contacts && (
-                    <div className="contacts">
-                      <div className="search_input">
-                        <input
-                          type="text"
-                          className="search_user_input"
-                          value={search}
-                          onChange={handleSearchInputChange}
-                          placeholder="rechercher un nom ou un contact"
-                        />
-                      </div>
-                      {contacts.map((contact: any, index: number) => (
-                        <div className="contact" key={index}>
-                          <div className="description">
-                            <div className="contact_profil_pic">
-                              <img
-                                src={`../../../../images/contacts/maes.jpeg`}
-                                alt="tod_descr"
-                              />
-                            </div>
-                            <div className="contact_des">
-                              <div className="contact_name">
-                                {contact.username}
+
+                  <div className="contacts">
+                    <div className="search_input">
+                      <input
+                        type="text"
+                        className="search_user_input"
+                        value={search}
+                        onChange={handleSearchInputChange}
+                        placeholder="rechercher un nom ou un contact"
+                      />
+                    </div>
+                    {contacts && (
+                      <div className="conts">
+                        {contacts.map((contact: any, index: number) => (
+                          <div
+                            className="contact"
+                            key={index}
+                            onClick={() => {
+                              handleStartNewDiscuss(user.uid, contact.id);
+                            }}
+                          >
+                            <div className="description">
+                              <div className="contact_profil_pic">
+                                <img
+                                  src={`../../../../images/contacts/maes.jpeg`}
+                                  alt="tod_descr"
+                                />
                               </div>
-                              <div className="phone">{contact.phone}</div>
+                              <div className="contact_des">
+                                <div className="contact_name">
+                                  {contact.username}
+                                </div>
+                                <div className="phone">{contact.phone}</div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                        ))}
+                      </div>
+                    )}
+                    {contacts.length === 0 && (
+                      <div className="message contact">
+                        Vous n'avez aucun contact
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
