@@ -45,6 +45,20 @@ export default function DashSquelette({
   >(null);
   const [message, setMessageInput] = useState<string>(""); // État pour le contenu de la zone de saisie de message
   const textareaRef = useRef<HTMLTextAreaElement>(null); // Référence à l'élément textarea
+  const [userData, setUserData] = useState<User | null>(null);
+  const [user, setUser] = useState<any | null>(null);
+  const [discuss, setDiscuss] = useState<any>([]);
+  const [contacts, setUserContacts] = useState<any>(null);
+  const [addNewContactDisplay, setAddNewContactDisplay] =
+    useState<boolean>(false);
+  const [StartNewDiscussDisplay, setStartNewDiscussDisplay] =
+    useState<boolean>(false);
+  const [successContact, setSuccessContact] = useState<any[]>([]); // Utilisez un tableau pour stocker les contacts
+  const [lastMessages, setLastMessages] = useState<{ [key: string]: string }>(
+    {}
+  ); // État pour stocker les derniers messages de chaque discussion
+  const [search, setsearch] = useState("");
+  //console.log(`users discuss: ${JSON.stringify(discuss)}`);
 
   const handleMessageInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -64,11 +78,12 @@ export default function DashSquelette({
       }
     }
     const value = listenForDiscussions(setDiscuss, user?.uid, setIsLoaded);
-    //console.log(value);
-  }, [message]);
+    listenForUserData(setUserData, user?.uid, setUserContacts);
+  }, [message, user]);
 
   // Fonction pour gérer le clic sur un contact
   const handleContactClick = (contact: any) => {
+    setAddNewContactDisplay(false);
     setSelectedContact(contact); // Mettre à jour le contact sélectionné
   };
 
@@ -77,9 +92,6 @@ export default function DashSquelette({
     setSelectedDiscut(discussion); // Mettre à jour la discussion sélectionnée
     setselectedDiscutContact(contact); // Mettre à jour le contact de la discussion
   };
-
-  const [userData, setUserData] = useState<User | null>(null);
-  const [user, setUser] = useState<any | null>(null);
 
   useEffect(() => {
     const auth = getAuth();
@@ -100,9 +112,6 @@ export default function DashSquelette({
     return () => unsubscribe();
   }, []);
 
-  //listen for user data
-  useEffect(() => {}, []);
-
   const handleSendMessage = async (
     senderId: string,
     messageContent: string,
@@ -117,13 +126,8 @@ export default function DashSquelette({
       console.error("Erreur lors de l'envoi du message :", error);
     }
   };
-  const [discuss, setDiscuss] = useState<any>([]);
-  const [contacts, setUserContacts] = useState<any>(null);
-  //console.log(`users discuss: ${JSON.stringify(discuss)}`);
 
-  useEffect(() => {
-    listenForUserData(setUserData, user?.uid);
-  }, []);
+  useEffect(() => {}, [user]);
 
   //mise a jour de la discussion selectionné
   useEffect(() => {
@@ -137,10 +141,6 @@ export default function DashSquelette({
       }
     }
   }, [discuss]);
-
-  const [lastMessages, setLastMessages] = useState<{ [key: string]: string }>(
-    {}
-  ); // État pour stocker les derniers messages de chaque discussion
 
   useEffect(() => {
     // Fonction pour récupérer le dernier message de chaque discussion
@@ -162,12 +162,13 @@ export default function DashSquelette({
 
   //console.log(`contacts: ${contacts}`);
 
-  const [addNewContactDisplay, setAddNewContactDisplay] =
-    useState<boolean>(false);
-  const [successContact, setSuccessContact] = useState<any[]>([]); // Utilisez un tableau pour stocker les contacts
-
   const handleAddNewContactDisplay = () => {
+    setSelectedContact(null);
     setAddNewContactDisplay(true);
+  };
+  const handleStartNewDiscuss = () => {
+    setSelectedDiscut(null);
+    setStartNewDiscussDisplay(true);
   };
 
   // Récupérez les utilisateurs et mettez à jour successContact lorsque le composant est monté
@@ -182,7 +183,7 @@ export default function DashSquelette({
     };
     fetchUsers();
   }, []);
-  const [search, setsearch] = useState("");
+
   const handleSearchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -199,7 +200,7 @@ export default function DashSquelette({
     }
   };
 
-  //console.log(`user is: ${JSON.stringify(contacts)}`);
+  console.log(`user is: ${JSON.stringify(userData)}`);
 
   return (
     <div className={`${title} dash`}>
@@ -289,7 +290,10 @@ export default function DashSquelette({
                           );
                         })} */}
                       </div>
-                      <div className="add_btn call_action">
+                      <div
+                        className="add_btn call_action"
+                        onClick={handleStartNewDiscuss}
+                      >
                         nouveau contact <FontAwesomeIcon icon={faMessage} />
                         <FontAwesomeIcon icon={faPlus} />
                       </div>
@@ -480,9 +484,6 @@ export default function DashSquelette({
                           value={search}
                           onChange={handleSearchInputChange}
                         />
-                        <div className="handle_search_btn">
-                          <FontAwesomeIcon icon={faSearch} />
-                        </div>
                       </div>
                       {successContact.map((contact: any, index: number) => {
                         if (
@@ -502,9 +503,11 @@ export default function DashSquelette({
                                 </div>
                                 <div className="contact_des">
                                   <div className="contact_name">
-                                    {contact.username}
+                                    {reduceMessage(contact.username, 20)}
                                   </div>
-                                  <div className="phone">{contact.phone}</div>
+                                  <div className="phone">
+                                    {reduceMessage(contact.phone, 20)}
+                                  </div>
                                 </div>
                               </div>
                               <div
@@ -520,6 +523,46 @@ export default function DashSquelette({
                         }
                         return null; // Retourner null si l'ID du contact est égal à celui de l'utilisateur actuel
                       })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            {StartNewDiscussDisplay === true && (
+              <div className="addNewContactModale">
+                <div className="contacts_suc">
+                  <div className="sec_header">
+                    <div className="titlte">Nouvelle Discussion</div>
+                  </div>
+                  {contacts && (
+                    <div className="contacts">
+                      <div className="search_input">
+                        <input
+                          type="text"
+                          className="search_user_input"
+                          value={search}
+                          onChange={handleSearchInputChange}
+                          placeholder="rechercher un nom ou un contact"
+                        />
+                      </div>
+                      {contacts.map((contact: any, index: number) => (
+                        <div className="contact" key={index}>
+                          <div className="description">
+                            <div className="contact_profil_pic">
+                              <img
+                                src={`../../../../images/contacts/maes.jpeg`}
+                                alt="tod_descr"
+                              />
+                            </div>
+                            <div className="contact_des">
+                              <div className="contact_name">
+                                {contact.username}
+                              </div>
+                              <div className="phone">{contact.phone}</div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>

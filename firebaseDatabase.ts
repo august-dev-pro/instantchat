@@ -135,7 +135,11 @@ export const listenForUserData = (
           const userContacts = await getUserContacts(userId);
           setUserContacts(userContacts);
         }
-        console.log("Données mises à jour en temps réel :", discussions);
+        console.log(
+          "Données mises à jour en temps réel :",
+          discussions,
+          snapshot
+        );
       } catch (error: any) {
         console.error(
           "Erreur lors de la récupération des discussions en temps réel :",

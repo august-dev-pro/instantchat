@@ -4,7 +4,11 @@ import "./page.css";
 import "./globals.css";
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { getUserDiscuss, listenForDiscussions } from "@/firebaseDatabase";
+import {
+  getUserDiscuss,
+  listenForDiscussions,
+  listenForUserData,
+} from "@/firebaseDatabase";
 
 export default function Home() {
   /*   const usersCon = getUserContactsTest("C9mRJHaYRwRcCoQAk3EKdu3U1By2");
@@ -24,7 +28,7 @@ export default function Home() {
       console.log("Erreur lors de la récupération des contacts :", error);
     }); */
 
-  const [discussions, setDiscuss] = useState<any[]>([]);
+  const [userData, setUserData] = useState<any[]>([]);
   useEffect(() => {
     const currentUser = getAuth().currentUser;
     console.log(currentUser?.uid);
@@ -34,10 +38,10 @@ export default function Home() {
       }
     };
     fetchUserData();
-    //listenForDiscussions(setDiscuss, currentUser?.uid);
+    //  listenForUserData(setUserData, currentUser?.uid);
   }, []);
 
-  console.log(`users discuss: ${JSON.stringify(discussions)}`);
+  //console.log(`users data: ${JSON.stringify(userData)}`);
   return (
     <div className="home">
       <div className="home_container container">

@@ -294,33 +294,36 @@
   height: 100%;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc {
-  width: -moz-fit-content;
-  width: fit-content;
   margin: 0 auto;
   height: -moz-fit-content;
   height: fit-content;
   box-shadow: 0px 0px 5px 0px #06938b;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .sec_header {
   border-bottom: 1px solid #06938b;
-  padding: 10px 5px;
+  padding: 10px 20px;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .sec_header .titlte {
   text-transform: uppercase;
-  text-align: center;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts {
-  padding: 5px;
+  text-align: left;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  padding: 10px 0;
+  padding: 10px 20px;
+  /*   .handle_search_btn {
+      padding: 0 7px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: all .2s;
+      background-color: #06938b;
+  } */
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .search_user_input {
+  width: 100%;
   border: none;
-  border-bottom-left-radius: 0.5rem;
-  border-top-left-radius: 0.5rem;
+  border-radius: 0.5rem;
   padding: 7px 0;
   padding-left: 10px;
   outline: none;
@@ -328,17 +331,10 @@
   box-shadow: none;
   /* Supprime toute ombre de focus */
   font-size: 15px;
-  font-weight: 600;
-  color: #3f3f3f;
-  background-color: #646566;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .handle_search_btn {
-  padding: 0 7px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  background-color: #06938b;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #585858;
+  border-bottom: 1px solid white;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .handle_search_btn:hover {
   background-color: #03d3c8;
@@ -346,13 +342,14 @@
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 5px 10px;
+  padding: 5px 20px;
   cursor: pointer;
+  width: 390px;
+  justify-content: space-between;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic {
   height: 50px;
@@ -369,6 +366,8 @@
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_des .phone {
   font-weight: 200;
+  width: -moz-max-content;
+  width: max-content;
 }
 .dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .add {
   width: -moz-fit-content;
@@ -379,7 +378,6 @@
   color: #06938b;
   border-radius: 0.2rem;
   cursor: pointer;
-  margin: 0 auto;
   transition: all 0.2s;
   border: 1px solid #06938b;
   display: flex;
