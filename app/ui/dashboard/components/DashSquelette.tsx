@@ -63,6 +63,8 @@ export default function DashSquelette({
         textareaRef.current.style.height = "35px";
       }
     }
+    const value = listenForDiscussions(setDiscuss, user?.uid, setIsLoaded);
+    //console.log(value);
   }, [message]);
 
   // Fonction pour gérer le clic sur un contact
@@ -99,10 +101,7 @@ export default function DashSquelette({
   }, []);
 
   //listen for user data
-  useEffect(() => {
-    const value = listenForDiscussions(setDiscuss, user?.uid, setIsLoaded);
-    console.log(value);
-  }, []);
+  useEffect(() => {}, []);
 
   const handleSendMessage = async (
     senderId: string,

@@ -438,7 +438,6 @@ export const listenForDiscussions = (
             discussion.participants.user1Id === userId ||
             discussion.participants.user2Id === userId
         );
-
         if (userDiscussions.length > 0) {
           setNewsData(userDiscussions);
           setIsLoaded(false);
@@ -446,7 +445,10 @@ export const listenForDiscussions = (
           setIsLoaded(true);
         }
         setIsLoaded(false);
-        console.log("Données mises à jour en temps réel :", userDiscussions);
+        console.log(
+          "Données mises à jour en temps réel :",
+          /* userDiscussions */ discussions
+        );
         // console.log("snapshot snapshot :", snapshot);
       } catch (error: any) {
         console.error(
