@@ -1,0 +1,30 @@
+.footer {
+
+    background-color: #06938b;
+    display: flex;
+    justify-content: center;
+
+    .footer_container {
+
+
+        .footer_content {
+
+
+            .field {
+
+                .icon {
+                    color: #fff !important;
+                    font-size: 18px;
+                }
+
+                height: 45px;
+                display: flex;
+                gap: 20px;
+                align-items: center;
+
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 420px) {}

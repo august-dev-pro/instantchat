@@ -1,0 +1,40 @@
+.dashboard {
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  height: calc(100vh - 115px);
+  overflow-y: auto;
+}
+.dashboard .dashboard_container {
+  height: 100%;
+  width: 100%;
+}
+.dashboard .dashboard_container .dashboard_content {
+  display: flex;
+  height: 100%;
+}
+.dashboard .dashboard_container .dashboard_content .show {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    height: calc(100vh - 65px);
+  }
+  .dashboard .dashboard_container {
+    height: 100%;
+    width: 100%;
+  }
+  .dashboard .dashboard_container .dashboard_content {
+    flex-direction: column;
+  }
+  .dashboard .dashboard_container .dashboard_content .show {
+    width: 100%;
+    height: inherit;
+  }
+}
+@media screen and (max-width: 420px) {
+  .dashboard {
+    height: calc(100vh - 80px);
+  }
+}/*# sourceMappingURL=dashboardLayout.css.map */

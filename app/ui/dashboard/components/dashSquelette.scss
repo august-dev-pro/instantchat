@@ -1,0 +1,902 @@
+.time-readed {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    justify-content: right;
+    right: 10px;
+    bottom: 5px;
+    gap: 5px;
+
+    .readed {
+        .deplace {
+            position: absolute;
+            left: -4px;
+            bottom: 3px;
+        }
+    }
+
+    .time {
+        letter-spacing: 1px;
+    }
+
+    .read {
+        color: rgb(0, 204, 255);
+    }
+}
+
+.dash {
+    display: flex;
+    height: 100%;
+
+    .dash_container {
+        display: flex;
+        height: 100%;
+        width: 100%;
+
+        .chield {
+            border: 2px solid #06938c00;
+            display: flex;
+            padding: 5px 15px;
+            gap: 20px;
+
+            .picture {
+                height: 50px;
+                width: 50px;
+
+                img {
+                    max-width: 100%;
+                    height: 50px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+
+            .description {
+                font-size: 15px;
+
+                .name {
+                    text-transform: capitalize;
+                }
+
+                .contact_phone_num {
+                    font-weight: 300;
+                    letter-spacing: 1px;
+                }
+
+                .last_message {
+                    font-weight: 200;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .chield.active {
+            border-color: #06938b !important;
+        }
+
+        .chield:hover {
+            background-color: #1f2a31;
+            cursor: pointer;
+        }
+
+        .screen_dash_content {
+            display: none;
+        }
+
+        .contact_show {
+
+            //padding: 30px;
+            .show_profil_pic {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .picture {
+                    height: 200px;
+                    width: 200px;
+
+                    img {
+                        max-width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            .show_contact_desc {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+
+                .name-num {
+                    display: flex;
+                    gap: 50px;
+
+                    .name {
+                        font-size: 25px;
+                        letter-spacing: 1px;
+                    }
+
+
+                }
+
+                .actu-mot {
+                    display: flex;
+                    gap: 40px;
+
+                    .phone {
+                        font-weight: 300;
+                        color: #dddddd;
+                        letter-spacing: 1px;
+                    }
+                }
+
+                .quote-callActions {
+                    display: flex;
+                    gap: 50px;
+
+                    .callActions {
+                        display: flex;
+                        gap: 20px;
+
+                        .delete-action {
+                            color: #ff0000;
+                        }
+                    }
+                }
+            }
+        }
+
+        .discussion_show {
+            display: grid;
+            grid-template-rows: 50px 1fr;
+            height: 100%;
+
+            .contact {
+                display: flex;
+                //padding: 1px 0;
+                padding-left: 20px;
+                background-color: #394c5881;
+                width: 100%;
+                align-items: center;
+                gap: 20px;
+                //box-shadow: 0px -5px 1px 0px #06938b;
+
+                .profil_pic {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .picture {
+                        height: 40px;
+                        width: 40px;
+
+                        img {
+                            max-width: 100%;
+                            height: 40px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
+                .name {
+                    letter-spacing: 1px;
+                }
+
+                .phone {
+                    letter-spacing: 1px;
+                    font-weight: 100;
+                }
+            }
+
+            .discussion_block {
+                height: 100%;
+                display: grid;
+
+                grid-template-rows: 1fr auto; // La taille de .discuss sera ajustée automatiquement pour prendre tout l'espace disponible
+
+                .discussion {
+                    //background-color: #303df1;
+                    padding: 0 20px;
+
+                    .discussion_content {
+                        padding: 20px 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        //overflow-y: auto;
+                        //white-space: nowrap;
+                        max-height: 400px;
+                        overflow-y: auto;
+                        scrollbar-width: none;
+                        -ms-overflow-style: none;
+
+                        .message {
+                            .message_text {
+                                padding: 8px;
+                                border-radius: 1rem;
+                                font-weight: 300;
+                                display: flex;
+                                align-items: center;
+                                gap: 5px;
+                                position: relative;
+                                padding-right: 60px;
+
+
+
+                            }
+                        }
+
+                        .message.received {
+                            //background-color: #ff0000;
+                            display: flex;
+                            justify-content: left;
+
+                            .message_text {
+                                border-top-left-radius: 0;
+                                max-width: 50%;
+                                text-align: justify;
+                                background-color: #2d404d;
+                            }
+                        }
+
+                        .message.sent {
+                            //background-color: #0077ff;
+                            display: flex;
+                            justify-content: right;
+
+                            .message_text {
+                                border-bottom-right-radius: 0;
+                                max-width: 50%;
+                                text-align: justify;
+                                background-color: #06938c67;
+                            }
+                        }
+
+                        .message.system-message {
+                            //background-color: #0077ff;
+                            display: flex;
+                            justify-content: center;
+
+                            .message_text {
+                                max-width: 50%;
+                                text-align: justify;
+                                background-color: #00000041;
+                                color: #dddddd;
+                                font-size: 15px;
+                                // border: 1px solid #06938c6c;
+                            }
+                        }
+                    }
+                }
+
+                .message-input {
+                    padding: 5px 20px;
+                    display: grid;
+                    grid-template-columns: 40px 1fr;
+                    //align-items: center;
+                    //height: 50px;
+                    //position: relative;
+                    // background-color: #ad0847;
+                    align-items: flex-end;
+
+                    .emoji {
+                        display: flex;
+                        //justify-content: center;
+                        align-items: center;
+                        //height: 60px;
+                        //position: absolute;
+                        padding: 15px 0;
+                        cursor: pointer;
+                    }
+
+                    .espace-send {
+                        display: grid;
+                        grid-template-columns: 1fr 45px;
+                        align-items: center;
+                        border: 1px solid #06938b;
+
+                        .input {
+
+                            //width: 100%;
+                            //height: 10px !important;
+                            //background-color: #06938b;
+                            max-height: 100px;
+                            min-height: 40px !important;
+                            height: 40px;
+                            overflow-y: auto;
+                            //white-space: nowrap;
+                            overflow-y: scroll;
+                            scrollbar-width: none;
+                            -ms-overflow-style: none;
+                            resize: none;
+                            align-items: center;
+                            padding: 5px;
+                            padding-left: 10px;
+                            //border: 1px solid #06938b;
+                            border: none;
+                            background-color: inherit;
+                            color: #fff;
+                            font-weight: 200;
+
+                            &:focus {
+                                outline: none;
+                            }
+
+                            .container {}
+
+                            .container::-webkit-scrollbar {
+                                width: 0;
+                                /* Largeur de la barre de défilement WebKit à zéro */
+                                height: 0;
+                                /* Hauteur de la barre de défilement WebKit à zéro */
+                            }
+
+
+                        }
+
+                        .send-btn {
+                            cursor: pointer;
+                            // display: flex;
+                            display: flex;
+                            height: fit-content;
+                            align-items: center;
+                            justify-content: center;
+                            //flex-direction: column;
+                            //justify-content: flex-end !important;
+                            //align-items: flex-end;
+                            //height: min-content;
+                            //padding: 15px 0;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .dash_content {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+
+            .aside_show {
+                .aside_show_container {
+                    height: 100%;
+                    background-color: #2d404d;
+                    box-shadow: 0px -5px 1px 0px #06938b;
+
+                    .aside_show_content {
+                        //height: 100%;
+                        width: 300px;
+
+                        .title {
+                            padding: 5px 15px;
+                            font-size: 18px;
+                            font-weight: 400;
+                        }
+
+                        .aside_chields {
+                            display: flex;
+                            flex-direction: column;
+
+                            .discut {
+                                font-size: 15px;
+                                display: grid !important;
+                                grid-template-columns: 50px 1fr;
+
+                                .discuss_info {
+                                    display: flex;
+                                    flex-direction: row !important;
+                                    justify-content: space-between;
+
+                                    .sender_latesMessage {
+                                        display: flex !important;
+                                        flex-direction: column !important;
+                                        gap: 2px !important;
+
+                                        .contact_phone_num {
+                                            font-weight: 300;
+                                            letter-spacing: 1px;
+                                        }
+
+                                        .last_message {
+                                            font-weight: 200;
+                                            font-size: 14px;
+                                        }
+                                    }
+
+                                    .time_unRead {
+                                        display: flex;
+                                        font-weight: 200;
+                                        font-size: 12px;
+                                        position: relative;
+
+                                        .time-readed {
+                                            .readed {
+                                                right: 25px;
+                                            }
+                                        }
+
+                                        .unreadeMessage {
+                                            position: absolute;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            text-align: center;
+                                            width: 18px;
+                                            height: 18px;
+                                            border-radius: 50%;
+                                            background-color: #06938b;
+                                            right: 0;
+                                            top: 5px;
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                            .chield {
+                                border: 2px solid #06938c00;
+                                display: flex;
+                                padding: 5px 15px;
+                                gap: 20px;
+
+                                .picture {
+                                    height: 50px;
+                                    width: 50px;
+
+                                    img {
+                                        max-width: 100%;
+                                        height: 50px;
+                                        object-fit: cover;
+                                        border-radius: 50%;
+                                    }
+                                }
+
+                                .description {
+                                    font-size: 15px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 5px;
+                                    //.name {}
+
+                                    .contact_phone_num {
+                                        font-weight: 300;
+                                        letter-spacing: 1px;
+                                    }
+
+                                    .last_message {
+                                        font-weight: 200;
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+
+
+                            .chield.active {
+                                border-color: #06938b !important;
+                            }
+
+                            .chield:hover {
+                                background-color: #1f2a31;
+                                cursor: pointer;
+                            }
+
+                            // .contact {}
+                        }
+                    }
+                }
+            }
+
+
+            .content_show_section {
+                .addNewContactModale {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+
+
+
+                    .contacts_suc {
+                        margin: 0 auto;
+                        height: fit-content;
+                        box-shadow: 0px 0px 5px 0px #06938b;
+                        // padding: 5px;
+                        width: fit-content;
+
+                        .sec_header {
+                            border-bottom: 1px solid #06938b;
+                            padding: 10px 20px;
+
+                            .titlte {
+                                text-transform: uppercase;
+                                text-align: left;
+                            }
+                        }
+
+                        .contacts {
+                            //padding: 5px 20px;
+
+                            .search_input {
+                                // display: grid;
+                                padding: 10px 20px;
+
+
+                                .search_user_input {
+                                    width: 100%;
+                                    border: none;
+                                    border-radius: .5rem;
+                                    padding: 7px 0;
+                                    padding-left: 10px;
+                                    outline: none;
+                                    /* Supprime le contour de focus */
+                                    box-shadow: none;
+                                    /* Supprime toute ombre de focus */
+                                    font-size: 15px;
+                                    font-weight: 500;
+                                    color: #ffffff;
+                                    background-color: #585858;
+                                    border-bottom: 1px solid #ffff;
+                                }
+
+                                /*   .handle_search_btn {
+                                    padding: 0 7px;
+                                    display: flex;
+                                    align-items: center;
+                                    cursor: pointer;
+                                    transition: all .2s;
+                                    background-color: #06938b;
+                                } */
+
+                                .handle_search_btn:hover {
+                                    background-color: #03d3c8;
+
+                                }
+                            }
+
+                            .contact {
+                                display: flex;
+                                align-items: center;
+                                //gap: 20px;
+                                //border: 1px solid #313535;
+                                padding: 5px 20px;
+                                cursor: pointer;
+                                width: 390px;
+                                justify-content: space-between;
+
+                                .description {
+                                    display: flex;
+                                    gap: 10px;
+
+                                    .contact_profil_pic {
+                                        height: 50px;
+                                        width: 50px;
+                                        border-radius: 50%;
+                                        overflow: hidden;
+
+                                        img {
+                                            max-width: 100%;
+                                            max-width: 50px;
+                                        }
+                                    }
+
+                                    .contact_des {
+                                        .contact_name {
+                                            text-transform: capitalize;
+                                        }
+
+                                        .phone {
+                                            font-weight: 200;
+                                            width: max-content;
+                                        }
+                                    }
+                                }
+
+                                .add {
+                                    width: fit-content;
+                                    height: fit-content;
+                                    padding: 5px 15px;
+                                    color: #06938b;
+                                    border-radius: .2rem;
+                                    cursor: pointer;
+                                    //margin: 0 auto;
+                                    transition: all .2s;
+                                    border: 1px solid #06938b;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 5px;
+                                }
+
+                                .add:hover {
+                                    background-color: #06938b;
+                                    color: #fff;
+                                }
+                            }
+                        }
+
+                        .contact:hover {
+                            background-color: #324958;
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+    }
+}
+
+.add_btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 15px;
+    color: #06938b;
+    border-radius: .2rem;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 20px;
+    transition: all .2s;
+    border: 1px solid #06938b;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add_btn:hover {
+    background-color: #06938b;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .dash {
+        .dash_container {
+            .dash_content {
+                display: none;
+            }
+
+            .discussion_show {
+
+
+                .contact {
+                    padding-left: 0 !important;
+
+                    .back_action {
+                        padding: 0 7px;
+                        transition: all .3s;
+                    }
+
+                    .back_action:hover {
+                        color: #06938b;
+                    }
+
+                    .name {
+                        letter-spacing: 2px !important;
+                    }
+
+                    .phone {
+                        font-size: 15px;
+                    }
+                }
+
+                .discussion_block {
+                    height: 100%;
+                    display: grid;
+
+                    grid-template-rows: 1fr auto; // La taille de .discuss sera ajustée automatiquement pour prendre tout l'espace disponible
+
+                    .discussion {
+                        //background-color: #303df1;
+                        padding: 0 10px;
+
+                        .discussion_content {
+                            padding: 20px 0;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+                            //overflow-y: auto;
+                            //white-space: nowrap;
+                            max-height: 450px;
+                            overflow-y: auto;
+                            scrollbar-width: none;
+                            -ms-overflow-style: none;
+
+                            .message {
+                                .message_text {
+                                    padding: 10px;
+                                    border-radius: 1rem;
+                                    font-weight: 300;
+                                    max-width: 70% !important;
+                                }
+                            }
+
+                            .message.received {
+                                //background-color: #ff0000;
+                                display: flex;
+                                justify-content: left;
+
+                                .message_text {
+                                    border-top-left-radius: 0;
+                                    background-color: #2d404d;
+                                    //                                   text-align: center;
+                                }
+                            }
+
+                            .message.sent {
+                                //background-color: #0077ff;
+                                display: flex;
+                                justify-content: right;
+
+                                .message_text {
+                                    border-bottom-right-radius: 0;
+                                    //                                    text-align: right;
+                                    background-color: #06938c67;
+                                }
+                            }
+                        }
+                    }
+
+                    .message-input {
+                        padding: 5px 20px;
+                        display: grid;
+                        grid-template-columns: 40px 1fr;
+                        //align-items: center;
+                        //height: 50px;
+                        //position: relative;
+                        // background-color: #ad0847;
+                        align-items: flex-end;
+
+                        .emoji {
+                            display: flex;
+                            //justify-content: center;
+                            align-items: center;
+                            //height: 60px;
+                            //position: absolute;
+                            padding: 15px 0;
+                            cursor: pointer;
+                        }
+
+                        .espace-send {
+                            display: grid;
+                            grid-template-columns: 1fr 45px;
+                            align-items: center;
+                            border: 1px solid #06938b;
+
+                            .input {
+
+                                //width: 100%;
+                                //height: 10px !important;
+                                //background-color: #06938b;
+                                max-height: 100px;
+                                min-height: 40px !important;
+                                height: 40px;
+                                overflow-y: auto;
+                                //white-space: nowrap;
+                                overflow-y: scroll;
+                                scrollbar-width: none;
+                                -ms-overflow-style: none;
+                                resize: none;
+                                align-items: center;
+                                padding: 5px;
+                                padding-left: 10px;
+                                //border: 1px solid #06938b;
+                                border: none;
+                                background-color: inherit;
+                                color: #fff;
+                                font-weight: 200;
+
+                                &:focus {
+                                    outline: none;
+                                }
+
+                                .container {}
+
+                                .container::-webkit-scrollbar {
+                                    width: 0;
+                                    /* Largeur de la barre de défilement WebKit à zéro */
+                                    height: 0;
+                                    /* Hauteur de la barre de défilement WebKit à zéro */
+                                }
+
+
+                            }
+
+                            .send-btn {
+                                cursor: pointer;
+                                // display: flex;
+                                display: flex;
+                                height: fit-content;
+                                align-items: center;
+                                justify-content: center;
+                                //flex-direction: column;
+                                //justify-content: flex-end !important;
+                                //align-items: flex-end;
+                                //height: min-content;
+                                //padding: 15px 0;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            .screen_dash_content {
+                display: block;
+                width: 100%;
+
+                .contact_show {
+                    width: 100%;
+                    padding-top: 30px;
+
+                    .show_profil_pic {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .picture {
+                            height: 200px;
+                            width: 200px;
+
+                            img {
+                                max-width: 100%;
+                                height: 200px;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+
+                    .show_contact_desc {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 10px;
+
+                        .name-num {
+                            display: flex;
+                            gap: 50px;
+
+                            .name {
+                                font-size: 25px;
+                                letter-spacing: 1px;
+                            }
+
+
+                        }
+
+                        .actu-mot {
+                            display: flex;
+                            gap: 40px;
+
+                            .phone {
+                                font-weight: 300;
+                                color: #dddddd;
+                                letter-spacing: 1px;
+                            }
+                        }
+
+                        .quote-callActions {
+                            display: flex;
+                            gap: 50px;
+
+                            .callActions {
+                                display: flex;
+                                gap: 20px;
+
+                                .delete-action {
+                                    color: #ff0000;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
