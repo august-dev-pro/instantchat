@@ -10,10 +10,7 @@ export interface Message {
   content: string;
   writeDate: any;
   writeTime: any;
-<<<<<<< HEAD
   read: boolean;
-=======
->>>>>>> 9937075649020d8a8c8b604984dfa54dac61ec43
 }
 
 export interface Discuss {
