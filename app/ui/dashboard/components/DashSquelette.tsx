@@ -665,9 +665,15 @@ export default function DashSquelette({
                             <div className="contact" key={index}>
                               <div className="description">
                                 <div className="contact_profil_pic">
-                                  <img
+                                  {/* <img
                                     src={`../../../../images/contacts/maes.jpeg`}
                                     alt="tod_descr"
+                                  /> */}
+                                  <Image
+                                    src={"/images/contacts/maes.jpeg"}
+                                    alt="profil"
+                                    height={500}
+                                    width={500}
                                   />
                                 </div>
                                 <div className="contact_des">
@@ -726,9 +732,15 @@ export default function DashSquelette({
                           >
                             <div className="description">
                               <div className="contact_profil_pic">
-                                <img
+                                {/* <img
                                   src={`../../../../images/contacts/maes.jpeg`}
                                   alt="tod_descr"
+                                /> */}
+                                <Image
+                                  src={"/images/contacts/maes.jpeg"}
+                                  alt="profil"
+                                  height={500}
+                                  width={500}
                                 />
                               </div>
                               <div className="contact_des">
