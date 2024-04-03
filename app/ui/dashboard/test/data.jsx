@@ -486,10 +486,17 @@ export const discuss = [
   },
 ];
 
+<<<<<<< HEAD
 function getSender(id) {
   return contacts.find((contact) => contact.id === id);
 }
 const getLastMessage = (messages) => {
+=======
+export function getSender(id) {
+  return contacts.find((contact) => contact.id === id);
+}
+export const getLastMessage = (messages) => {
+>>>>>>> 9937075649020d8a8c8b604984dfa54dac61ec43
   if (!Array.isArray(messages)) {
     // Vérifier si messages n'est pas un tableau
     return null; // Ou une valeur par défaut selon votre logique
@@ -505,6 +512,16 @@ const getLastMessage = (messages) => {
   return messages[0]; // Renvoyer le dernier message après le tri
 };
 
+<<<<<<< HEAD
+=======
+export function reduceMessage(nomArticle, longueurLimite) {
+  if (nomArticle.length > longueurLimite) {
+    return nomArticle.substring(0, longueurLimite) + "...";
+  }
+  return nomArticle;
+}
+
+>>>>>>> 9937075649020d8a8c8b604984dfa54dac61ec43
 // Fonction de tri des messages
 const sortMessagesByTime = (messages) => {
   return messages.sort((a, b) => {

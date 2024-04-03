@@ -42,7 +42,17 @@ const LoginForm = () => {
       setPassword("");
       window.location.assign("/dashboard");
     }
+
+    const handleSubmit = (event: any) => {
+      event.preventDefault();
+      console.log("is sabmit singin");
+
+      signInUser(email, password);
+      setEmail("");
+      setPassword("");
+    };
   };
+
   return (
     <form onSubmit={handleSubmit} className="login-form form">
       <div className="log-form_container form_container">
@@ -60,6 +70,13 @@ const LoginForm = () => {
                 {errorMessage}
               </div>
             )}
+
+            <div
+              className="flex h-8 items-end space-x-1"
+              aria-live="polite"
+              aria-atomic="true"
+            ></div>
+
             <div className="saisies">
               <div className="chield">
                 <label htmlFor="email">email</label>
@@ -93,6 +110,15 @@ const LoginForm = () => {
                 <Link href="/register" className="login" type="submit">
                   Inscrivez-vous
                 </Link>
+              </div>
+
+              <div
+                className="n"
+                onClick={() => {
+                  SignOutUser();
+                }}
+              >
+                deconexion
               </div>
             </div>
           </div>
