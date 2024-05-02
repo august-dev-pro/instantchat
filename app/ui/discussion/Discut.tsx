@@ -18,8 +18,9 @@ import "@/app/ui/dashboard/components/dashSquelette.css";
 import SendFile from "@/app/ui/dashboard/components/SendFile";
 import EmojiModal from "@/app/ui/dashboard/components/EmojiModal";
 
-const Page = ({ params }: { params: { id: string } }) => {
-  const discussId = params.id;
+const Discut = ({ id }: { id: string }) => {
+  const discussId = id;
+
   const [discut, setDiscut] = useState<any | null>();
   const [contact, setContact] = useState<any | null>([]);
   const [user, setUser] = useState<any | null>(null);
@@ -87,6 +88,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   return (
     <div>
+      ihiohohohoihoihohi: {JSON.stringify(discussId)}
       {discut && (
         <div className="discussion_show">
           {
@@ -196,4 +198,4 @@ const Page = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default Page;
+export default Discut;
