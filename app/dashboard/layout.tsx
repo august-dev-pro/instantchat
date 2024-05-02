@@ -6,7 +6,6 @@ import SideNav from "../ui/dashboard/sideNav/SideNav";
 import { useRequireAuth } from "@/firebaseDatabase";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const user = useRequireAuth();
   const isChieldSelected = null;
   return (
     <div className="black dashboard">

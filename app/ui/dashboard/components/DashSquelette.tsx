@@ -2,10 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./dashSquelette.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faSmile } from "@fortawesome/free-regular-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
-
 import { User } from "../../interfaces/interface";
 import { getAuth } from "firebase/auth";
 import {
@@ -16,6 +14,7 @@ import {
   getUserDiscuss,
   getUsers,
   listenForDiscussions,
+  listenForUser,
   listenForUserData,
   markMessagesAsRead,
   readUserData,
@@ -26,16 +25,21 @@ import { getLastMessage } from "@/app/lib/actions";
 
 import {
   faCheck,
-  faCheckDouble,
+  faCircle,
+  faCircleStop,
   faComment,
   faContactBook,
+  faFolderPlus,
   faMessage,
   faPlus,
-  faSearch,
+  faTimesCircle,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import { faSquareCheck } from "@fortawesome/free-solid-svg-icons/faSquareCheck";
+import EmojiModal from "./EmojiModal";
+import SendFile from "./SendFile";
+import Link from "next/link";
+
 export default function DashSquelette({
   title,
 }: // contacts,
@@ -63,7 +67,7 @@ export default function DashSquelette({
   const [successContact, setSuccessContact] = useState<any[]>([]); // Utilisez un tableau pour stocker les contacts
   const [lastMessages, setLastMessages] = useState<any>({}); // État pour stocker les derniers messages de chaque discussion
   const [search, setsearch] = useState("");
-  //console.log(`users discuss: ${JSON.stringify(discuss)}`);
+  const [isContactConnected, setIsContactConnected] = useState<boolean>(false);
 
   const handleMessageInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -84,7 +88,19 @@ export default function DashSquelette({
     }
     listenForDiscussions(setDiscuss, user?.uid, setIsLoaded);
     listenForUserData(setUserData, user?.uid, setUserContacts);
+    listenForUser(selectedDiscutContact?.id, setselectedDiscutContact);
   }, [user]);
+
+  useEffect(() => {
+    if (
+      selectedDiscutContact &&
+      selectedDiscutContact.status?.toLowerCase() === "en ligne"
+    ) {
+      setIsContactConnected(true);
+    } else {
+      setIsContactConnected(false);
+    }
+  }, [selectedDiscutContact?.status]);
   // Fonction pour gérer le clic sur un contact
   const handleContactClick = (contact: any) => {
     setAddNewContactDisplay(false);
@@ -289,7 +305,9 @@ export default function DashSquelette({
       console.log("erreur lors de la creation de la discussion:", error);
     }
   };
-  // console.log(`user is: ${JSON.stringify(lastMessages)}`);
+  /* console.log(
+    `selectedDiscutContact is: ${JSON.stringify(selectedDiscutContact)}`
+  ); */
   // Boucler à travers les propriétés de lastMessages
   /*   for (const key in lastMessages) {
     if (Object.prototype.hasOwnProperty.call(lastMessages, key)) {
@@ -304,11 +322,23 @@ export default function DashSquelette({
       }
     }
   } */
+  const [emojiModalOpen, setEmojiModalOpen] = useState(false);
+
+  const emojiClick = (emoji: any) => {
+    setMessageInput(message + emoji);
+  };
+
+  const openEmojiModal = () => {
+    setEmojiModalOpen(!emojiModalOpen);
+  };
+
+  console.log("selected discut", selectedDiscut);
 
   return (
     <div className={`${title} dash`}>
       <div className={`${title}_container dash_container`}>
         <div className={`${title}_content dash_content`}>
+          {/* aside */}
           <div className={`aside_show`}>
             <div className="aside_show_container">
               <div className="aside_show_content">
@@ -390,29 +420,33 @@ export default function DashSquelette({
                                     </div>
                                   )}
                                   <div className="time-readed">
-                                    {lastMessages[discussion.id].senderId ===
-                                      user.uid && (
-                                      <div
-                                        className={`readed ${
-                                          lastMessages[discussion.id].read
-                                            ? "read"
-                                            : ""
-                                        }`}
-                                      >
-                                        <FontAwesomeIcon icon={faCheck} />
-                                        <FontAwesomeIcon
-                                          className="deplace"
-                                          icon={faCheck}
-                                        />
+                                    {lastMessages[discussion.id] &&
+                                      lastMessages[discussion.id].senderId ===
+                                        user.uid && (
+                                        <div
+                                          className={`readed ${
+                                            lastMessages[discussion.id].read
+                                              ? "read"
+                                              : ""
+                                          }`}
+                                        >
+                                          <FontAwesomeIcon icon={faCheck} />
+                                          <FontAwesomeIcon
+                                            className="deplace"
+                                            icon={faCheck}
+                                          />
+                                        </div>
+                                      )}
+
+                                    {lastMessages[discussion.id] && (
+                                      <div className="time">
+                                        {reduceMessage(
+                                          lastMessages[discussion.id].writeTime,
+                                          5,
+                                          true
+                                        )}
                                       </div>
                                     )}
-                                    <div className="time">
-                                      {reduceMessage(
-                                        lastMessages[discussion.id].writeTime,
-                                        5,
-                                        true
-                                      )}
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -493,6 +527,7 @@ export default function DashSquelette({
               </div>
             </div>
           </div>
+          {/* show */}
           <div className={`content_show_section `}>
             {/* Contenu de la section discussion_show */}
             {selectedDiscut && selectedDiscutContact && (
@@ -500,10 +535,6 @@ export default function DashSquelette({
                 <div className="contact">
                   <div className="profil_pic">
                     <div className="picture">
-                      {/* <img
-                        src={`../../../../images/contacts/lefa.jpeg`}
-                        alt="tod_descr"
-                      /> */}
                       <Image
                         src={"/images/contacts/maes.jpeg"}
                         alt="profil"
@@ -512,9 +543,23 @@ export default function DashSquelette({
                       />
                     </div>
                   </div>
-                  <div className="name">{selectedDiscutContact.userName}</div>
-                  <div className="phone">
-                    phone: {selectedDiscutContact.phone}
+                  <div className="name_phone_status">
+                    <div className="name_phone">
+                      <div className="name">
+                        {selectedDiscutContact.userName}
+                      </div>
+                      <div className="phone">
+                        phone: {selectedDiscutContact.phone}
+                      </div>
+                    </div>
+                    <div className="status">
+                      {selectedDiscutContact.status}
+                      <FontAwesomeIcon
+                        className="icon"
+                        icon={isContactConnected ? faCircle : faTimesCircle}
+                        style={{ color: isContactConnected ? "green" : "red" }}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="discussion_block">
@@ -565,9 +610,13 @@ export default function DashSquelette({
                     </div>
                   </div>
                   <div className="message-input">
-                    <div className="emoji">
-                      <FontAwesomeIcon icon={faSmile} />
+                    <div className="emojit" onClick={openEmojiModal}>
+                      <label>
+                        <FontAwesomeIcon icon={faSmile} />
+                      </label>
                     </div>
+                    <SendFile />
+                    {emojiModalOpen && <EmojiModal emojiClick={emojiClick} />}
                     {/* Zone de saisie de message */}
                     <div className="espace-send">
                       <textarea
@@ -764,6 +813,124 @@ export default function DashSquelette({
               </div>
             )}
           </div>
+        </div>
+        <div className="screen_dash_content">
+          {title === "discuss" && discuss && (
+            <div className="discuss_aside">
+              <div className="discuss">
+                {discuss.map((discussion: any, index: number) => {
+                  // Trouver le contact correspondant à l'utilisateur actuel dans la discussion
+                  const contact = contacts?.find((contact: any) => {
+                    const userId = user?.uid;
+                    const user1Id = discussion.participants.user1Id;
+                    const user2Id = discussion.participants.user2Id;
+
+                    const isValidContact =
+                      contact.id !== userId &&
+                      (contact.id === user1Id || contact.id === user2Id) &&
+                      (userId === user1Id || userId === user2Id);
+                    return isValidContact;
+                  });
+                  //recuperation du dernier message de la discussion
+
+                  // Afficher le contact correspondant
+
+                  return contact ? (
+                    <Link href={`/dashboard/discuss/${discussion.id}`}>
+                      <div
+                        className={`discut chield ${
+                          selectedDiscut && selectedDiscut.id === discussion.id
+                            ? "active"
+                            : ""
+                        }`}
+                        key={index}
+                        onClick={() => handleDiscussClick(discussion, contact)}
+                      >
+                        <div className="sender_profil picture">
+                          {/*  <img
+                                  src={`../../../../images/contacts/lefa.jpeg`}
+                                  alt="tod_descr"
+                                /> */}
+                          <Image
+                            src={"/images/contacts/maes.jpeg"}
+                            alt="profil"
+                            height={500}
+                            width={500}
+                          />
+                        </div>
+                        <div className="discuss_info description">
+                          <div className="sender_latesMessage">
+                            <div className="sender_name">
+                              {contact.username}
+                            </div>
+                            <div className="last_message">
+                              {lastMessages[discussion.id]
+                                ? reduceMessage(
+                                    lastMessages[discussion.id].content,
+                                    25
+                                  )
+                                : "Aucun message"}
+                            </div>
+                          </div>
+                          <div className="time_unRead">
+                            {countUnreadMessages(
+                              discussion.messages,
+                              user.uid
+                            ) !== 0 && (
+                              <div className="unreadeMessage">
+                                <div className="number">
+                                  {countUnreadMessages(
+                                    discussion.messages,
+                                    user.uid
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                            <div className="time-readed">
+                              {lastMessages[discussion.id] &&
+                                lastMessages[discussion.id].senderId ===
+                                  user.uid && (
+                                  <div
+                                    className={`readed ${
+                                      lastMessages[discussion.id].read
+                                        ? "read"
+                                        : ""
+                                    }`}
+                                  >
+                                    <FontAwesomeIcon icon={faCheck} />
+                                    <FontAwesomeIcon
+                                      className="deplace"
+                                      icon={faCheck}
+                                    />
+                                  </div>
+                                )}
+
+                              {lastMessages[discussion.id] && (
+                                <div className="time">
+                                  {reduceMessage(
+                                    lastMessages[discussion.id].writeTime,
+                                    5,
+                                    true
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  ) : null;
+                })}
+              </div>
+              <div
+                className="add_btn call_action"
+                onClick={handleStartNewDiscussDisplay}
+              >
+                nouveau contact <FontAwesomeIcon icon={faMessage} />
+                <FontAwesomeIcon icon={faPlus} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Timestamp, serverTimestamp } from "firebase/firestore/lite";
+import { boolean } from "zod";
 
 /* fonction d'inscription */
 /* export async function writeUserDataContacts(userIdToUpdate: string) {
@@ -98,7 +99,7 @@ export async function SignOutUser() {
 // Fonction pour lire les données utilisateur à partir de la base de données
 export async function readUserData(
   userId: string | undefined
-): Promise<User | null> {
+): Promise<any | null> {
   try {
     // Obtenir une référence à l'emplacement spécifié dans la base de données
     const userRef = ref(database, `users/${userId}`);
@@ -110,7 +111,11 @@ export async function readUserData(
     if (snapshot.exists()) {
       // Récupérer les données lues
       const userData = snapshot.val() as User;
-      return userData;
+      const userDataCompleted = {
+        id: userId,
+        ...userData,
+      };
+      return userDataCompleted;
     } else {
       console.log("Aucune donnée trouvée pour cet utilisateur.");
       return null;
@@ -415,6 +420,70 @@ export async function getDiscuss(): Promise<any[]> {
     return [];
   }
 }
+/* export async function getDiscut(id: string): Promise<any> {
+  try {
+    const discussionRef = ref(database, `discussions/${id}`);
+
+    const discutSnapshot = await get(discussionRef);
+
+    const discussionsWithMessages: any[] = [];
+
+    const discussionId = discutSnapshot.key;
+    const discussionData = discutSnapshot.val();
+
+    const messagesArray: any[] = [];
+
+    // Vérifier si la propriété messages existe et est définie
+    if (discussionData.messages) {
+      // Convertir les messages en tableau d'objets avec id inclus
+      Object.keys(discussionData.messages).forEach((messageId) => {
+        const messageData = discussionData.messages[messageId];
+        messagesArray.push({ id: messageId, ...messageData });
+      });
+    }
+
+    const discuss = {
+      id: discussionId, // Ajout de l'ID de la discussion
+      participants: discussionData.participants,
+      messages: messagesArray,
+    };
+
+    discussionsWithMessages.push(discuss);
+
+    return discussionsWithMessages;
+  } catch (error: any) {
+    console.error(
+      `Erreur lors de la récupération des discussions avec messages : ${error.message}`
+    );
+    return [];
+  }
+} */
+export async function getDiscut(id: string): Promise<any> {
+  try {
+    const discussionRef = ref(database, `discussions/${id}`);
+    const discutSnapshot = await get(discussionRef);
+
+    if (!discutSnapshot.exists()) {
+      throw new Error(`La discussion avec l'ID ${id} n'existe pas.`);
+    }
+
+    const discussionId = discutSnapshot.key;
+    const discussionData = discutSnapshot.val();
+
+    const discuss = {
+      id: discussionId,
+      participants: discussionData.participants,
+      messages: discussionData.messages || [], // Assurez-vous qu'il y a toujours un tableau de messages
+    };
+
+    return discuss;
+  } catch (error: any) {
+    console.error(
+      `Erreur lors de la récupération de la discussion : ${error.message}`
+    );
+    return null;
+  }
+}
 
 // fonction pour recuperer les utilisateur
 export async function getUsers(): Promise<any[]> {
@@ -626,6 +695,76 @@ export const listenForDiscussions = (
     }
     /* console.log("selected discuss", selectedDiscut, "user:", userId);
     setIsLoaded(false); */
+  });
+
+  return unsubscribe;
+};
+
+export const listenForDiscussion = (
+  setDiscussionData: any,
+  discussionId: any,
+  userId: any,
+  setIsLoaded: any
+) => {
+  const discussionRef = ref(database, `discussions/${discussionId}`);
+  const unsubscribe = onValue(discussionRef, async (snapshot) => {
+    try {
+      const discussion = snapshot.val();
+      if (discussion) {
+        // Vérifier si l'utilisateur est impliqué dans cette discussion
+        if (
+          discussion.participants.user1Id === userId ||
+          discussion.participants.user2Id === userId
+        ) {
+          // Mettre à jour les données de discussion et le statut de chargement
+          setDiscussionData(discussion);
+          setIsLoaded(false);
+        } else {
+          console.log(
+            "L'utilisateur n'est pas autorisé à accéder à cette discussion."
+          );
+          setIsLoaded(true);
+        }
+      } else {
+        console.log("Discussion introuvable.");
+        setIsLoaded(true);
+      }
+    } catch (error: any) {
+      console.error(
+        "Erreur lors de la récupération de la discussion en temps réel :",
+        error.message
+      );
+    }
+  });
+
+  return unsubscribe;
+};
+
+export const listenForUser = (
+  userId: string,
+  setSelectedDiscutContact: any
+) => {
+  const usersRef = ref(database, "users");
+  const unsubscribe = onValue(usersRef, async (snapshot) => {
+    try {
+      const usersData = snapshot.val();
+      if (!usersData) {
+        console.log("Aucun utilisateur trouvé.");
+        return;
+      }
+
+      // Filtrer les utilisateurs pour exclure l'utilisateur actuel
+      const user = Object.values(usersData).find(
+        (user: any) => user.userId === userId
+      );
+      setSelectedDiscutContact(user);
+      console.log("Utilisateur récupérés en temps réel :", user);
+    } catch (error: any) {
+      console.error(
+        "Erreur lors de la récupération des utilisateurs en temps réel :",
+        error.message
+      );
+    }
   });
 
   return unsubscribe;
@@ -852,5 +991,17 @@ export async function markMessagesAsRead(
       `Une erreur s'est produite lors du marquage du message comme lu :`,
       error
     );
+  }
+}
+
+export async function addStatusToUser(userId: string, lineValue: string) {
+  const userStatus = {
+    status: lineValue,
+  };
+  try {
+    update(ref(database, `users/${userId}`), userStatus);
+    console.log(`Status added to the user: ${userId} successfully.`);
+  } catch (error) {
+    console.error("Error occurred while adding status to the user:", error);
   }
 }

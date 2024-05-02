@@ -3,20 +3,29 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import "./header.css";
 import "../../../globals.css";
-import {
-  SignOutUser,
-  getUserContacts,
-  getUserDiscuss,
-  getUsers,
-  readUserData,
-} from "@/firebaseDatabase";
+import { SignOutUser, addStatusToUser, readUserData } from "@/firebaseDatabase";
 import { getAuth } from "firebase/auth";
 import { User } from "../../interfaces/interface";
 
 const Header = () => {
-  const [userData, setUserData] = useState<User | null>(null);
+  const [userData, setUserData] = useState<any | null>(null);
   const [user, setUser] = useState<any | null>(null);
-  const [contact, setcontact] = useState<any | null>(null);
+
+  /*   useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = auth?.onAuthStateChanged(async (user) => {
+      if (user) {
+        setUser(user);
+        const userData = await readUserData(user.uid);
+        setUserData(userData);
+        addStatusToUser(user.uid, "onLine");
+      } else {
+        setUser(null);
+        setUserData(null);
+      }
+    });
+    return () => unsubscribe();
+  }, [user]); */
 
   useEffect(() => {
     const auth = getAuth();
@@ -25,24 +34,26 @@ const Header = () => {
         setUser(user);
         const userData = await readUserData(user.uid);
         setUserData(userData);
-        // const userContact = await getUserContacts(user.uid);
-        // setcontact(userContact);
+        addStatusToUser(user.uid, "En ligne"); // Utilisateur connecté, mettez le statut en ligne
       } else {
+        // Utilisateur déconnecté, mettez le statut hors ligne
+        if (userData && userData.id) {
+          addStatusToUser(userData.id, "hors ligne");
+        }
         setUser(null);
         setUserData(null);
       }
+      console.log(`users data from contacts:`, JSON.stringify(userData));
     });
     return () => unsubscribe();
-  }, []);
-
-  //console.log(`users data from contacts: ${contact}`);
+  }, [user]); // userData devrait être inclus dans les dépendances pour que la fonction soit rappelée lorsque userData change
 
   const handleSignOut = async () => {
+    addStatusToUser(userData.id, "hors ligne");
     await SignOutUser();
     setUser(null);
     setUserData(null);
   };
-
   return (
     <header className="header">
       <div className="container header_container">
