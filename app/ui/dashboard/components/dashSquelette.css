@@ -871,7 +871,8 @@
     padding-bottom: 15px;
     max-width: 70%;
     min-width: 70px;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    font-size: 18px;
   }
   .discussion_show .discussion_block .discussion .discussion_content .message.received .message_text {
     max-width: 70%;

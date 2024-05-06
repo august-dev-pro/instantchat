@@ -6,6 +6,7 @@ import {
   sendMessage,
 } from "@/firebaseDatabase";
 import {
+  faArrowLeft,
   faCheck,
   faPaperPlane,
   faSmile,
@@ -17,6 +18,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "@/app/ui/dashboard/components/dashSquelette.css";
 import SendFile from "@/app/ui/dashboard/components/SendFile";
 import EmojiModal from "@/app/ui/dashboard/components/EmojiModal";
+import Link from "next/link";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const discussId = params.id;
@@ -91,6 +93,9 @@ const Page = ({ params }: { params: { id: string } }) => {
         <div className="discussion_show">
           {
             <div className="contact">
+              <Link href={""}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </Link>
               <div className="profil_pic">
                 {/* <div className="picture">
                   <Image

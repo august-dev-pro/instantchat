@@ -836,7 +836,7 @@ export default function DashSquelette({
                   // Afficher le contact correspondant
 
                   return contact ? (
-                    <Link href={`/dashboard/discuss/${discussion.id}`}>
+                    <Link href={`/discuss/${discussion.id}`}>
                       <div
                         className={`discut chield ${
                           selectedDiscut && selectedDiscut.id === discussion.id
