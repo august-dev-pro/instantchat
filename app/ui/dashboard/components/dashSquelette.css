@@ -88,6 +88,110 @@
   background-color: rgba(6, 147, 140, 0.3490196078);
 }
 
+.addNewContactModale {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.addNewContactModale .contacts_suc {
+  margin: 0 auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  box-shadow: 0px 0px 5px 0px #06938b;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.addNewContactModale .contacts_suc .sec_header {
+  border-bottom: 1px solid #06938b;
+  padding: 10px 20px;
+}
+.addNewContactModale .contacts_suc .sec_header .titlte {
+  text-transform: uppercase;
+  text-align: left;
+}
+.addNewContactModale .contacts_suc .contacts .search_input {
+  padding: 10px 20px;
+  /*   .handle_search_btn {
+                      padding: 0 7px;
+                      display: flex;
+                      align-items: center;
+                      cursor: pointer;
+                      transition: all .2s;
+                      background-color: #06938b;
+                  } */
+}
+.addNewContactModale .contacts_suc .contacts .search_input .search_user_input {
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 7px 0;
+  padding-left: 10px;
+  outline: none;
+  /* Supprime le contour de focus */
+  box-shadow: none;
+  /* Supprime toute ombre de focus */
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #585858;
+  border-bottom: 1px solid white;
+}
+.addNewContactModale .contacts_suc .contacts .search_input .handle_search_btn:hover {
+  background-color: #03d3c8;
+}
+.addNewContactModale .contacts_suc .contacts .contact {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  cursor: pointer;
+  width: 390px;
+  justify-content: space-between;
+}
+.addNewContactModale .contacts_suc .contacts .contact .description {
+  display: flex;
+  gap: 10px;
+}
+.addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic img {
+  max-width: 100%;
+  max-width: 50px;
+}
+.addNewContactModale .contacts_suc .contacts .contact .description .contact_des .contact_name {
+  text-transform: capitalize;
+}
+.addNewContactModale .contacts_suc .contacts .contact .description .contact_des .phone {
+  font-weight: 200;
+  width: -moz-max-content;
+  width: max-content;
+}
+.addNewContactModale .contacts_suc .contacts .contact .add {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px 15px;
+  color: #06938b;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #06938b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.addNewContactModale .contacts_suc .contacts .contact .add:hover {
+  background-color: #06938b;
+  color: #fff;
+}
+.addNewContactModale .contacts_suc .contact:hover {
+  background-color: #324958;
+}
+
 .dash {
   display: flex;
   height: 100%;
@@ -480,110 +584,6 @@
   background-color: #1f2a31;
   cursor: pointer;
 }
-.dash .dash_container .dash_content .content_show_section .addNewContactModale {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc {
-  margin: 0 auto;
-  height: -moz-fit-content;
-  height: fit-content;
-  box-shadow: 0px 0px 5px 0px #06938b;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .sec_header {
-  border-bottom: 1px solid #06938b;
-  padding: 10px 20px;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .sec_header .titlte {
-  text-transform: uppercase;
-  text-align: left;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input {
-  padding: 10px 20px;
-  /*   .handle_search_btn {
-      padding: 0 7px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all .2s;
-      background-color: #06938b;
-  } */
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .search_user_input {
-  width: 100%;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 7px 0;
-  padding-left: 10px;
-  outline: none;
-  /* Supprime le contour de focus */
-  box-shadow: none;
-  /* Supprime toute ombre de focus */
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
-  background-color: #585858;
-  border-bottom: 1px solid white;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .search_input .handle_search_btn:hover {
-  background-color: #03d3c8;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact {
-  display: flex;
-  align-items: center;
-  padding: 5px 20px;
-  cursor: pointer;
-  width: 390px;
-  justify-content: space-between;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description {
-  display: flex;
-  gap: 10px;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic img {
-  max-width: 100%;
-  max-width: 50px;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_des .contact_name {
-  text-transform: capitalize;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .description .contact_des .phone {
-  font-weight: 200;
-  width: -moz-max-content;
-  width: max-content;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .add {
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 5px 15px;
-  color: #06938b;
-  border-radius: 0.2rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 1px solid #06938b;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contacts .contact .add:hover {
-  background-color: #06938b;
-  color: #fff;
-}
-.dash .dash_container .dash_content .content_show_section .addNewContactModale .contacts_suc .contact:hover {
-  background-color: #324958;
-}
-
 .add_btn {
   width: -moz-fit-content;
   width: fit-content;
@@ -885,8 +885,8 @@
     justify-content: center;
   }
   .discussion_show .discussion_block .discussion .discussion_content .message.system-message .message_text {
-    max-width: 50%;
-    text-align: justify;
+    max-width: 95%;
+    text-align: center;
     background-color: rgba(0, 0, 0, 0.2549019608);
     color: #dddddd;
     font-size: 15px;
@@ -895,7 +895,7 @@
     padding: 5px 5px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
   }
   .discussion_show .discussion_block .message-input .emojo-file {
     display: flex;
@@ -997,6 +997,117 @@
   .emoji-Modal .emoji-Modal_container .emoji-Modal_container_content .emoji:hover {
     background-color: rgba(6, 147, 140, 0.3490196078);
   }
+  .addNewContactModale {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+  .addNewContactModale .contacts_suc {
+    margin: 0 auto;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+  }
+  .addNewContactModale .contacts_suc .sec_header {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .addNewContactModale .contacts_suc .sec_header svg {
+    cursor: pointer;
+  }
+  .addNewContactModale .contacts_suc .sec_header svg:hover {
+    color: #06938b;
+  }
+  .addNewContactModale .contacts_suc .sec_header .titlte {
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .addNewContactModale .contacts_suc .contacts .search_input {
+    padding: 5px;
+    /*   .handle_search_btn {
+                    padding: 0 7px;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: all .2s;
+                    background-color: #06938b;
+                } */
+  }
+  .addNewContactModale .contacts_suc .contacts .search_input .search_user_input {
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 7px 0;
+    padding-left: 10px;
+    outline: none;
+    /* Supprime le contour de focus */
+    box-shadow: none;
+    /* Supprime toute ombre de focus */
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #585858;
+    border-bottom: 1px solid white;
+  }
+  .addNewContactModale .contacts_suc .contacts .search_input .handle_search_btn:hover {
+    background-color: #03d3c8;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact .description {
+    display: flex;
+    gap: 10px;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact .description .contact_profil_pic img {
+    max-width: 100%;
+    max-width: 50px;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact .description .contact_des .contact_name {
+    text-transform: capitalize;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact .description .contact_des .phone {
+    font-weight: 200;
+    width: -moz-max-content;
+    width: max-content;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact .add {
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 5px 15px;
+    color: #06938b;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #06938b;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .addNewContactModale .contacts_suc .contacts .contact .add:hover {
+    background-color: #06938b;
+    color: #fff;
+  }
+  .addNewContactModale .contacts_suc .contact:hover {
+    background-color: inherit;
+  }
   .dash .dash_container .dash_content {
     display: none;
   }
@@ -1057,6 +1168,9 @@
   }
   .dash .dash_container .screen_dash_content .contact_show .show_contact_desc .quote-callActions .callActions .delete-action {
     color: #ff0000;
+  }
+  .dash .dash_container .screen_dash_content .contacts_aside .contacs .contact:hover {
+    background-color: rgba(3, 211, 200, 0.1725490196);
   }
   .dash .dash_container .screen_dash_content .discuss_aside .discuss .discut:hover {
     background-color: rgba(3, 211, 200, 0.1725490196);

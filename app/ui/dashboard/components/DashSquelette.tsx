@@ -24,6 +24,7 @@ import {
 import { getLastMessage } from "@/app/lib/actions";
 
 import {
+  faArrowLeft,
   faCheck,
   faCircle,
   faCircleStop,
@@ -922,13 +923,46 @@ export default function DashSquelette({
                   ) : null;
                 })}
               </div>
-              <div
+              <Link
+                href={"/dashboard/discuss/new"}
                 className="add_btn call_action"
-                onClick={handleStartNewDiscussDisplay}
               >
-                nouveau contact <FontAwesomeIcon icon={faMessage} />
+                Nouvelle discussion <FontAwesomeIcon icon={faMessage} />
                 <FontAwesomeIcon icon={faPlus} />
+              </Link>
+            </div>
+          )}
+          {title === "contacts" && contacts && (
+            <div className="contacts_aside">
+              <div className="contacs">
+                {contacts.map((contact: any, index: number) => (
+                  <div
+                    className={`contact chield`}
+                    key={index}
+                    onClick={() => handleContactClick(contact)}
+                  >
+                    <div className="contact_pic picture">
+                      <Image
+                        src={"/images/contacts/maes.jpeg"}
+                        alt="profil"
+                        height={500}
+                        width={500}
+                      />
+                    </div>
+                    <div className="contact_desc description">
+                      <div className="name"> {contact.username}</div>
+                      <div className="contact_phone_num">{contact.phone}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
+              <Link
+                href={"/dashboard/contacts/new"}
+                className="add_btn call_action"
+              >
+                nouveau contact <FontAwesomeIcon icon={faContactBook} />
+                <FontAwesomeIcon icon={faPlus} />
+              </Link>
             </div>
           )}
         </div>

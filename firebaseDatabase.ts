@@ -127,7 +127,7 @@ export async function readUserData(
 }
 //fonction listen des données du user
 export const listenForUserData = (
-  setNewsData: any,
+  setNewsData: any | null,
   userId: any,
   setUserContacts?: any
 ) => {
@@ -223,7 +223,7 @@ export async function sendMessage(
 
 // Fonction pour vérifier si une discussion existe déjà entre deux utilisateurs
 export function isDiscussionExists(
-  discussions: Discuss[],
+  discussions: any[],
   userId1: string,
   userId2: string
 ) {
@@ -537,6 +537,7 @@ export async function getUserContacts(userId: string | undefined) {
       if (user && user.contacts) {
         // Récupérer les IDs des contacts de l'utilisateur
         const userContactIds = user.contacts;
+        console.log("user contact id: ", JSON.stringify(userContactIds));
 
         // Filtrer les utilisateurs en fonction des IDs des contacts de l'utilisateur
         const userContacts = users.filter((user) =>
@@ -779,8 +780,14 @@ export async function addNewContact(userId: string, contactId: string) {
     if (contactsSnapshot.exists()) {
       const currentContacts = contactsSnapshot.val();
 
+      // Filtrer les éléments vides du tableau currentContacts
+      const filteredContacts = currentContacts.filter(
+        (contact: any) => contact
+      );
+
       // Ajouter le nouveau contact localement
-      const updatedContacts = [...currentContacts, contactId];
+      const updatedContacts = [...filteredContacts, contactId];
+      console.log("update contacts array :", filteredContacts);
 
       // Mettre à jour le tableau complet dans la base de données avec la nouvelle liste
       await set(ref(database, `users/${userId}/contacts`), updatedContacts);
