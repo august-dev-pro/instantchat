@@ -13,7 +13,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [contacts, setUserContacts] = useState<any>(null);
   const [userData, setUserData] = useState<any>([]);
   const [search, setsearch] = useState("");
@@ -111,4 +111,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
