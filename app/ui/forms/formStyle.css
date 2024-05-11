@@ -96,4 +96,90 @@
 }
 .form .form_container .form_content .form_items .form_btn .n .login:hover {
   background-color: #008ab4;
+}
+
+@media screen and (max-width: 420px) {
+  .form {
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 550px;
+    background-color: #fff;
+  }
+  .form .form_container {
+    width: 95%;
+  }
+  .form .form_container .form_content .form_header .form_title {
+    font-size: 20px;
+  }
+  .form .form_container .form_content .form_items {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form .form_container .form_content .form_items .saisies {
+    display: flex;
+    flex-direction: column;
+  }
+  .form .form_container .form_content .form_items .saisies .chield {
+    width: 100% !important;
+  }
+  .form .form_container .form_content .form_items .saisies .chield label {
+    color: rgba(31, 42, 49, 0.7176470588);
+  }
+  .form .form_container .form_content .form_items .saisies .chield label span {
+    color: #ff0000;
+  }
+  .form .form_container .form_content .form_items .saisies .chield input {
+    padding: 6px;
+    border: 1px solid rgba(31, 42, 49, 0.1450980392);
+    width: 100%;
+  }
+  .form .form_container .form_content .form_items .saisies .chield .message .text {
+    color: #ff0000 !important;
+  }
+  .form .form_container .form_content .form_items .form_btn {
+    display: flex;
+    gap: 10px;
+  }
+  .form .form_container .form_content .form_items .form_btn button,
+  .form .form_container .form_content .form_items .form_btn a {
+    padding: 8px 15px;
+    font-weight: 400;
+    font-size: 15px;
+    color: white;
+    border: none;
+    transition: all 0.3s;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    height: -moz-fit-content;
+    height: fit-content;
+    text-align: center;
+  }
+  .form .form_container .form_content .form_items .form_btn .register {
+    background-color: #05584b;
+  }
+  .form .form_container .form_content .form_items .form_btn .register:hover {
+    background-color: #00a78e;
+  }
+  .form .form_container .form_content .form_items .form_btn .n {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .form .form_container .form_content .form_items .form_btn .n .inner {
+    position: absolute;
+    width: -moz-max-content;
+    width: max-content;
+    top: 35px;
+  }
+  .form .form_container .form_content .form_items .form_btn .n .login {
+    background-color: #004e66;
+    left: 150px;
+  }
+  .form .form_container .form_content .form_items .form_btn .n .login:hover {
+    background-color: #008ab4;
+  }
 }/*# sourceMappingURL=formStyle.css.map */

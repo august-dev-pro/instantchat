@@ -25,10 +25,25 @@
   justify-content: center;
 }
 .home .home_container .home_content .home_items .calls-actions .action {
+  width: -moz-max-content;
+  width: max-content;
   background-color: #00026d;
   border: none;
   color: #fff;
   padding: 6px 20px;
   border-radius: 0.5rem;
   font-size: 16px;
+}
+
+@media screen and (max-width: 420px) {
+  .home .home_container .home_content .home_items {
+    gap: 20px;
+  }
+  .home .home_container .home_content .home_items .titlte .text {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .home .home_container .home_content .home_items .calls-actions {
+    gap: 50px;
+  }
 }/*# sourceMappingURL=page.css.map */

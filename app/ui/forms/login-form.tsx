@@ -106,19 +106,10 @@ const LoginForm = () => {
                 se connecter
               </button>
               <div className="n">
-                <div className="inner">vous navez pas un compte ?</div>
+                {/* <div className="inner">vous navez pas un compte ?</div> */}
                 <Link href="/register" className="login" type="submit">
                   Inscrivez-vous
                 </Link>
-              </div>
-
-              <div
-                className="n"
-                onClick={() => {
-                  SignOutUser();
-                }}
-              >
-                deconexion
               </div>
             </div>
           </div>

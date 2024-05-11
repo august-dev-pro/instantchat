@@ -31,12 +31,37 @@
           justify-content: center;
 
           .action {
+            width: max-content;
             background-color: #00026d;
             border: none;
             color: #fff;
             padding: 6px 20px;
             border-radius: .5rem;
             font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .home {
+    .home_container {
+      .home_content {
+        .home_items {
+          gap: 20px;
+
+          .titlte {
+            .text {
+              font-size: 25px;
+              font-weight: 600;
+            }
+
+          }
+
+          .calls-actions {
+            gap: 50px;
           }
         }
       }
