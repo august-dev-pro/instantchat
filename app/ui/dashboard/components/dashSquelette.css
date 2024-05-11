@@ -927,7 +927,16 @@
     border-radius: 0.6rem;
   }
   .time-readed {
-    bottom: 1px;
+    bottom: -10px;
+    left: 100%;
+  }
+  .time_unRead {
+    position: relative;
+  }
+  .time_unRead .readed .deplace {
+    position: absolute;
+    left: -45px;
+    bottom: 3px;
   }
   .emoji-Modal {
     position: absolute;
