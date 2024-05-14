@@ -512,13 +512,20 @@
   width: 300px;
 }
 .dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .title {
+  text-transform: uppercase;
   padding: 5px 15px;
   font-size: 18px;
   font-weight: 400;
+  border-bottom: 1px solid #fff;
 }
 .dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields {
   display: flex;
   flex-direction: column;
+}
+.dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .now {
+  text-align: center;
+  padding: 30px 0;
+  font-weight: 300;
 }
 .dash .dash_container .dash_content .aside_show .aside_show_container .aside_show_content .aside_chields .discut {
   font-size: 15px;
@@ -1141,6 +1148,11 @@
   .dash .dash_container .screen_dash_content {
     display: block;
     width: 100%;
+  }
+  .dash .dash_container .screen_dash_content .now {
+    text-align: center;
+    padding: 30px 0;
+    font-weight: 300;
   }
   .dash .dash_container .screen_dash_content .contact_show {
     width: 100%;

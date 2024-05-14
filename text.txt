@@ -1,3 +1,32 @@
+ <div className="contact" key={index}>
+                    <div className="description">
+                      <div className="contact_profil_pic">
+                        <Image
+                          src={"/images/contacts/maes.jpeg"}
+                          alt="profil"
+                          height={500}
+                          width={500}
+                        />
+                      </div>
+                      <div className="contact_des">
+                        <div className="contact_name">
+                          {/* {reduceMessage(contact?.username, 20)} */}
+                        </div>
+                        <div className="phone">
+                          {/* {reduceMessage(contact?.phone, 17)} */}
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="add"
+                      onClick={() => {
+                        handleAddNewContact(user.uid, contact.id);
+                      }}
+                    >
+                      ajouter <FontAwesomeIcon icon={faPlus} />
+                    </div>
+                  </div>
+
   <div className="discussion_show">
                 <div className="contact">
                   <div className="profil_pic">

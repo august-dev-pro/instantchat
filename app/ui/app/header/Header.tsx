@@ -6,26 +6,12 @@ import "../../../globals.css";
 import { SignOutUser, addStatusToUser, readUserData } from "@/firebaseDatabase";
 import { getAuth } from "firebase/auth";
 import { User } from "../../interfaces/interface";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DropdownMenu from "../../accessoires/DropdownMenu/DropdownMenu";
 
 const Header = () => {
   const [userData, setUserData] = useState<any | null>(null);
   const [user, setUser] = useState<any | null>(null);
-
-  /*   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = auth?.onAuthStateChanged(async (user) => {
-      if (user) {
-        setUser(user);
-        const userData = await readUserData(user.uid);
-        setUserData(userData);
-        addStatusToUser(user.uid, "onLine");
-      } else {
-        setUser(null);
-        setUserData(null);
-      }
-    });
-    return () => unsubscribe();
-  }, [user]); */
 
   useEffect(() => {
     const auth = getAuth();
@@ -87,6 +73,9 @@ const Header = () => {
                 </div>
               </div>
             </div>
+          </nav>
+          <nav className="nav_menu_drop">
+            <DropdownMenu user={user} />
           </nav>
         </div>
       </div>

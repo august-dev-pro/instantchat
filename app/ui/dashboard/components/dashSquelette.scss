@@ -659,14 +659,24 @@
                         width: 300px;
 
                         .title {
+                            text-transform: uppercase;
                             padding: 5px 15px;
                             font-size: 18px;
                             font-weight: 400;
+                            border-bottom: 1px solid #fff;
                         }
 
                         .aside_chields {
                             display: flex;
                             flex-direction: column;
+
+
+                            .now {
+                                text-align: center;
+                                padding: 30px 0;
+                                font-weight: 300;
+                            }
+
 
                             .discut {
                                 font-size: 15px;
@@ -1479,6 +1489,12 @@
             .screen_dash_content {
                 display: block;
                 width: 100%;
+
+                .now {
+                    text-align: center;
+                    padding: 30px 0;
+                    font-weight: 300;
+                }
 
                 .contact_show {
                     width: 100%;

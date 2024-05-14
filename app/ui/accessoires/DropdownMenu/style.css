@@ -1,0 +1,26 @@
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdown-toggle {
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.dropdown .dropdown-menu {
+  position: absolute;
+  top: 115%;
+  right: -100%;
+  background-color: #06938b;
+  width: -moz-max-content;
+  width: max-content;
+}
+.dropdown .dropdown-menu .content .chield {
+  padding: 3px 20px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.dropdown .dropdown-menu .content .chield:hover {
+  background-color: #056b66;
+}/*# sourceMappingURL=style.css.map */
