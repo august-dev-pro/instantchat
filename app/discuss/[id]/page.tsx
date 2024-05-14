@@ -1,6 +1,11 @@
 "use client";
 import {
   getDiscut,
+  listenForDiscussions,
+  listenForDiscut,
+  listenForUser,
+  listenForUserData,
+  markMessagesAsRead,
   readUserData,
   reduceMessage,
   sendMessage,
@@ -25,8 +30,12 @@ import Link from "next/link";
 const Page = ({ params }: { params: { id: string } }) => {
   const discussId = params.id;
   const [discut, setDiscut] = useState<any | null>();
+  const [discuss, setDiscuss] = useState<any | null>();
+  const [isLoaded, setIsLoaded] = useState<boolean | null>();
   const [contact, setContact] = useState<any | null>([]);
+  const [userContacts, setUserContacts] = useState<any | null>([]);
   const [user, setUser] = useState<any | null>(null);
+  const [userData, setUserData] = useState<any | null>(null);
   const [message, setMessageInput] = useState<string>(""); // État pour le contenu de la zone de saisie de message
   const [emojiModalOpen, setEmojiModalOpen] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null); // Référence à l'élément textarea
@@ -58,6 +67,7 @@ const Page = ({ params }: { params: { id: string } }) => {
     }
   };
   const isContactConnected = 1;
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -77,6 +87,7 @@ const Page = ({ params }: { params: { id: string } }) => {
     };
     fetchUsers();
   }, []);
+
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = auth?.onAuthStateChanged(async (user) => {
@@ -88,6 +99,37 @@ const Page = ({ params }: { params: { id: string } }) => {
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (discut) {
+      console.log("discut is hier....", discut);
+      listenForDiscussions(setDiscuss, user?.uid, setIsLoaded);
+    }
+    // listenForUserData(setUserData, user?.uid);
+  }, [user]);
+
+  useEffect(() => {
+    if (discut && discuss) {
+      const updatedSelectedDiscuss = discuss.find(
+        (d: any) => d.id === discut.id
+      );
+      if (updatedSelectedDiscuss) {
+        Promise.all(
+          updatedSelectedDiscuss.messages.map(async (message: any) => {
+            if (message && !message.read && message.senderId !== user.uid) {
+              await markMessagesAsRead(
+                updatedSelectedDiscuss.id,
+                message.id,
+                user.uid
+              );
+            }
+          })
+        ).then(async () => {
+          setDiscut(updatedSelectedDiscuss);
+        });
+      }
+    }
+  }, [discuss, user]);
 
   return (
     <div>
@@ -127,40 +169,43 @@ const Page = ({ params }: { params: { id: string } }) => {
           <div className="discussion_block">
             <div className="discussion">
               <div className="discussion_content">
-                {Object.values(discut.messages).map(
-                  (message: any, index: number) => (
-                    <div
-                      className={`message  ${
-                        message.senderId === user.uid
-                          ? "sent"
-                          : message.senderId === "system"
-                          ? "system-message"
-                          : "received"
-                      }`}
-                      key={index}
-                    >
-                      <div className="message_text">
-                        {message.content}
-                        <div className="time-readed">
-                          {message.senderId === user.uid && (
-                            <div
-                              className={`readed ${message.read ? "read" : ""}`}
-                            >
-                              <FontAwesomeIcon icon={faCheck} />
-                              <FontAwesomeIcon
-                                className="deplace"
-                                icon={faCheck}
-                              />
+                {discut &&
+                  Object.values(discut.messages).map(
+                    (message: any, index: number) => (
+                      <div
+                        className={`message  ${
+                          message.senderId === user.uid
+                            ? "sent"
+                            : message.senderId === "system"
+                            ? "system-message"
+                            : "received"
+                        }`}
+                        key={index}
+                      >
+                        <div className="message_text">
+                          {message.content}
+                          <div className="time-readed inMessage">
+                            {message.senderId === user.uid && (
+                              <div
+                                className={`readed ${
+                                  message.read ? "read" : ""
+                                }`}
+                              >
+                                <FontAwesomeIcon icon={faCheck} />
+                                <FontAwesomeIcon
+                                  className="deplace"
+                                  icon={faCheck}
+                                />
+                              </div>
+                            )}
+                            <div className="time">
+                              {reduceMessage(message.writeTime, 5, true)}
                             </div>
-                          )}
-                          <div className="time">
-                            {reduceMessage(message.writeTime, 5, true)}
                           </div>
                         </div>
                       </div>
-                    </div>
-                  )
-                )}
+                    )
+                  )}
               </div>
             </div>
             {

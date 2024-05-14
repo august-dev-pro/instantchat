@@ -8,6 +8,7 @@ import {
   equalTo,
   onValue,
   update,
+  DatabaseReference,
 } from "firebase/database";
 import { auth, database } from "./firebaseConfig";
 import { Discuss, Message, User } from "./app/ui/interfaces/interface";
@@ -60,8 +61,10 @@ export async function writeUserData(
     // Récupérer l'identifiant unique généré
     console.log("Nouvel identifiant utilisateur généré :", idFromAuth);
     window.location.assign("/login");
-  } catch (error) {
+  } catch (error: any) {
+    const errorMessage = error.message;
     console.log(`error survienne to the pushed it is: ${error}`);
+    return errorMessage;
   }
 }
 /* fonction de connexion */
@@ -135,17 +138,13 @@ export const listenForUserData = (
     ref(database, `users/${userId}`),
     async (snapshot) => {
       try {
-        const discussions = await readUserData(userId);
-        setNewsData(discussions);
+        const userData = await readUserData(userId);
+        setNewsData(userData);
         if (setUserContacts) {
           const userContacts = await getUserContacts(userId);
           setUserContacts(userContacts);
         }
-        console.log(
-          "Données mises à jour en temps réel :",
-          discussions,
-          snapshot
-        );
+        console.log("userData mis à jour :", userData);
       } catch (error: any) {
         console.error(
           "Erreur lors de la récupération des discussions en temps réel :",
@@ -700,44 +699,24 @@ export const listenForDiscussions = (
 
   return unsubscribe;
 };
+export const listenForDiscut = (
+  setNewsData: any,
+  discutId: string
+): (() => void) => {
+  const discutRef: DatabaseReference = ref(database, `discussions/${discutId}`);
 
-export const listenForDiscussion = (
-  setDiscussionData: any,
-  discussionId: any,
-  userId: any,
-  setIsLoaded: any
-) => {
-  const discussionRef = ref(database, `discussions/${discussionId}`);
-  const unsubscribe = onValue(discussionRef, async (snapshot) => {
-    try {
-      const discussion = snapshot.val();
-      if (discussion) {
-        // Vérifier si l'utilisateur est impliqué dans cette discussion
-        if (
-          discussion.participants.user1Id === userId ||
-          discussion.participants.user2Id === userId
-        ) {
-          // Mettre à jour les données de discussion et le statut de chargement
-          setDiscussionData(discussion);
-          setIsLoaded(false);
-        } else {
-          console.log(
-            "L'utilisateur n'est pas autorisé à accéder à cette discussion."
-          );
-          setIsLoaded(true);
-        }
-      } else {
-        console.log("Discussion introuvable.");
-        setIsLoaded(true);
-      }
-    } catch (error: any) {
-      console.error(
-        "Erreur lors de la récupération de la discussion en temps réel :",
-        error.message
-      );
+  // Écouter les mises à jour de la discussion
+  const unsubscribe = onValue(discutRef, (snapshot) => {
+    if (snapshot.exists()) {
+      const discutData = snapshot.val();
+      console.log("discut is update to: ", discutData);
+      setNewsData(discutData);
+    } else {
+      console.log("nada to ubdate: error");
     }
   });
 
+  // Retourne une fonction pour permettre le nettoyage de l'écouteur
   return unsubscribe;
 };
 

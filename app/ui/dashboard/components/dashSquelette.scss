@@ -4,8 +4,31 @@
     align-items: center;
     font-size: 10px;
     justify-content: right;
+    right: -10px;
+    bottom: -8px;
+    gap: 5px;
+
+    .readed {
+        .deplace {
+            position: absolute;
+            left: -4px;
+            bottom: 3px;
+        }
+    }
+
+    .time {
+        letter-spacing: 1px;
+    }
+
+    .read {
+        color: rgb(0, 204, 255);
+    }
+}
+
+.time-readed.inMessage {
+    justify-content: right;
     right: 10px;
-    bottom: 5px;
+    bottom: 2px;
     gap: 5px;
 
     .readed {
@@ -264,6 +287,7 @@
 
             .description {
                 font-size: 15px;
+                width: 100%;
 
                 .name {
                     text-transform: capitalize;
@@ -449,6 +473,8 @@
                         -ms-overflow-style: none;
 
                         .message {
+
+
                             .message_text {
                                 padding: 8px;
                                 border-radius: 1rem;
@@ -877,7 +903,7 @@
                         gap: 5px;
                         position: relative;
                         padding-right: 60px;
-
+                        word-wrap: anywhere;
 
 
                     }
@@ -1126,6 +1152,9 @@
                     -ms-overflow-style: none;
 
                     .message {
+
+
+                        /* Alternative moderne */
                         .message_text {
                             padding: 7px;
                             padding-bottom: 15px;
@@ -1144,7 +1173,7 @@
 
                     .message.sent {
                         .message_text {
-                            max-width: 70%;
+                            max-width: 80%;
                         }
                     }
 
@@ -1212,7 +1241,12 @@
     }
 
     .time-readed {
-        bottom: 1px;
+        bottom: -11px;
+        right: 0;
+    }
+
+    .time_unReads {
+        position: relative;
     }
 
     .emoji-Modal {

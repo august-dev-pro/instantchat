@@ -30,6 +30,10 @@
   flex-direction: column;
   gap: 20px;
 }
+.form .form_container .form_content .form_items .red {
+  color: #c40000;
+  font-weight: 300;
+}
 .form .form_container .form_content .form_items .saisies {
   display: grid;
   grid-template-columns: repeat(2, auto);

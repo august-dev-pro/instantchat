@@ -75,7 +75,6 @@ export default function DashSquelette({
   ) => {
     setMessageInput(event.target.value); // Mettre à jour le contenu de la zone de saisie de message
   };
-
   // Ajuster la hauteur de la zone de saisie en fonction de son contenu
   useEffect(() => {
     if (textareaRef.current) {
@@ -333,8 +332,6 @@ export default function DashSquelette({
     setEmojiModalOpen(!emojiModalOpen);
   };
 
-  console.log("selected discut", selectedDiscut);
-
   return (
     <div className={`${title} dash`}>
       <div className={`${title}_container dash_container`}>
@@ -568,7 +565,8 @@ export default function DashSquelette({
                     <div className="discussion_content">
                       {isLoaded
                         ? "chargement ..."
-                        : Object.values(selectedDiscut.messages).map(
+                        : selectedDiscut.messages &&
+                          Object.values(selectedDiscut.messages).map(
                             (message: any, index: number) => (
                               <div
                                 className={`message  ${
@@ -582,7 +580,7 @@ export default function DashSquelette({
                               >
                                 <div className="message_text">
                                   {message.content}
-                                  <div className="time-readed">
+                                  <div className="time-readed inMessage">
                                     {message.senderId === user.uid && (
                                       <div
                                         className={`readed ${
@@ -728,10 +726,14 @@ export default function DashSquelette({
                                 </div>
                                 <div className="contact_des">
                                   <div className="contact_name">
-                                    {reduceMessage(contact.username, 20)}
+                                    {
+                                      /* {reduceMessage(contact.username, 20)} */ contact.username
+                                    }
                                   </div>
                                   <div className="phone">
-                                    {reduceMessage(contact.phone, 20)}
+                                    {
+                                      /* {reduceMessage(contact.phone, 20)} */ contact.phone
+                                    }
                                   </div>
                                 </div>
                               </div>
@@ -873,7 +875,7 @@ export default function DashSquelette({
                                 : "Aucun message"}
                             </div>
                           </div>
-                          <div className="time_unRead">
+                          <div className="time_unReads">
                             {countUnreadMessages(
                               discussion.messages,
                               user.uid

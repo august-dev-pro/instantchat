@@ -2,6 +2,8 @@
 import {
   addNewContact,
   getUsers,
+  listenForDiscut,
+  listenForUserData,
   readUserData,
   reduceMessage,
 } from "@/firebaseDatabase";
@@ -50,6 +52,10 @@ const Page = () => {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    listenForUserData(setUserData, user?.uid);
+  }, [user]);
+
   //add new contact
   const handleAddNewContact = async (userId: string, contactId: string) => {
     try {
@@ -60,6 +66,7 @@ const Page = () => {
       console.error("Erreur lors de l'enregistrement du contact :", error);
     }
   };
+  /*   console.log("succes contact: ", JSON.stringify(userData)); */
 
   return (
     <div className="addNewContactModale">
@@ -79,11 +86,12 @@ const Page = () => {
               />
             </div>
             {successContact.map((contact: any, index: number) => {
+              // Vérifier si le contact n'est pas déjà dans les contacts de l'utilisateur
               if (
-                contact.id !== user.uid &&
-                !userData?.contacts?.find(
-                  (elemnt: any) => elemnt === contact.id
-                )
+                contact &&
+                (!userData.contacts ||
+                  !userData.contacts.includes(contact.id)) &&
+                contact.id != user.uid
               ) {
                 return (
                   <div className="contact" key={index}>
@@ -97,12 +105,8 @@ const Page = () => {
                         />
                       </div>
                       <div className="contact_des">
-                        <div className="contact_name">
-                          {reduceMessage(contact.username, 20)}
-                        </div>
-                        <div className="phone">
-                          {reduceMessage(contact.phone, 17)}
-                        </div>
+                        <div className="contact_name">{contact.username}</div>
+                        <div className="phone">{contact.phone}</div>
                       </div>
                     </div>
                     <div
@@ -115,8 +119,9 @@ const Page = () => {
                     </div>
                   </div>
                 );
+              } else {
+                return null; // Ne pas afficher le contact s'il est déjà dans les contacts de l'utilisateur
               }
-              return null;
             })}
           </div>
         )}
