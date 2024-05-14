@@ -10,10 +10,13 @@ import {
   faTimes,
   faSignOutAlt,
   faUsers,
+  faKey,
+  faFileSignature,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-const DropdownMenu = ({ user }: any) => {
+const DropdownMenu = ({ user, handleSignOut }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -27,7 +30,7 @@ const DropdownMenu = ({ user }: any) => {
           <FontAwesomeIcon icon={faTimes} /> // Afficher l'icône de fermeture
         ) : (
           <FontAwesomeIcon icon={faEllipsisV} /> // Sinon, afficher l'icône des trois points verticaux
-        )}{" "}
+        )}
       </div>
       {isOpen && (
         <div className="dropdown-menu">
@@ -43,24 +46,27 @@ const DropdownMenu = ({ user }: any) => {
                 <FontAwesomeIcon icon={faChartBar} /> dashboard
               </Link>
 
-              <Link href={""} className="chield">
+              <Link href={"t"} className="chield">
                 <FontAwesomeIcon icon={faUser} /> account
               </Link>
               <Link href={""} className="chield">
                 <FontAwesomeIcon icon={faCog} /> setting
               </Link>
-              <Link href={""} className="chield">
+              <div className="chield" onClick={() => handleSignOut()}>
                 <FontAwesomeIcon icon={faSignOutAlt} /> deconnexion
-              </Link>
+              </div>
             </div>
           ) : (
             <div className="content">
               <div className="chield">
-                <FontAwesomeIcon icon={faComment} /> s'incrire
+                <FontAwesomeIcon icon={faFileSignature} /> s'incrire
               </div>
               <div className="chield">
-                <FontAwesomeIcon icon={faComment} /> se connecter
+                <FontAwesomeIcon icon={faKey} /> se connecter
               </div>
+              <Link href={"/"} className="chield">
+                <FontAwesomeIcon icon={faHome} /> home
+              </Link>
             </div>
           )}
         </div>

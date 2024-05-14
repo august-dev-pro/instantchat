@@ -6,6 +6,25 @@
   overflow-y: auto;
   align-items: center;
 
+  .dash-btn {
+    padding: 5px 20px;
+    border: none;
+    border-radius: .5rem;
+    background-color: #00b3b3;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+    color: #fff;
+    cursor: pointer;
+    gap: 10px;
+  }
+
+  .dash-btn:hover {
+    background-color: #00ebeb;
+  }
+
   /* Pour activer le défilement vertical si nécessaire */
   .home_container {
     .home_content {
@@ -29,15 +48,17 @@
           display: flex;
           gap: 100px;
           justify-content: center;
+        }
 
-          .action {
-            width: max-content;
-            background-color: #00026d;
-            border: none;
-            color: #fff;
-            padding: 6px 20px;
-            border-radius: .5rem;
-            font-size: 16px;
+        .welcome {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          justify-content: center;
+
+          a {
+            color: rgb(238, 69, 69);
+            border-bottom: 1px solid #e42a2a;
           }
         }
       }

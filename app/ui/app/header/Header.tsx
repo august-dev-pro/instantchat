@@ -75,7 +75,7 @@ const Header = () => {
             </div>
           </nav>
           <nav className="nav_menu_drop">
-            <DropdownMenu user={user} />
+            <DropdownMenu user={user} handleSignOut={handleSignOut} />
           </nav>
         </div>
       </div>

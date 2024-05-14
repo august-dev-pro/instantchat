@@ -20,6 +20,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  font-weight: 300;
 }
 .dropdown .dropdown-menu .content .chield:hover {
   background-color: #056b66;

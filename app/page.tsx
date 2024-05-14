@@ -4,47 +4,24 @@ import "./page.css";
 import "./globals.css";
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import {
-  addReadFieldToMessages,
-  getUserDiscuss,
-  listenForDiscussions,
-  listenForUserData,
-} from "@/firebaseDatabase";
+import { listenForUserData } from "@/firebaseDatabase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
-  /*   const usersCon = getUserContactsTest("C9mRJHaYRwRcCoQAk3EKdu3U1By2");
-  usersCon
-    .then((users) => {
-      // Assurez-vous que users est un tableau d'utilisateurs avant d'essayer d'y accéder
-      if (Array.isArray(users) && users.length > 0) {
-        // Accédez au premier utilisateur et affichez-le
-        console.log(users[0]);
-      } else {
-        console.log(
-          "Aucun utilisateur trouvé ou erreur lors de la récupération."
-        );
-      }
-    })
-    .catch((error) => {
-      console.log("Erreur lors de la récupération des contacts :", error);
-    }); */
-
   const [userData, setUserData] = useState<any[]>([]);
-  /*   useEffect(() => {
+  const [user, setUser] = useState<any>();
+  useEffect(() => {
     const currentUser = getAuth().currentUser;
-    console.log(currentUser?.uid);
+    setUser(currentUser);
     const fetchUserData = async () => {
       if (currentUser?.uid) {
         const userId = currentUser.uid;
       }
     };
     fetchUserData();
-      listenForUserData(setUserData, currentUser?.uid);
-  }, []); */
-
-  //console.log(`users data: ${JSON.stringify(userData)}`);
-
-  //addReadFieldToMessages();
+    listenForUserData(setUserData, currentUser?.uid);
+  }, []);
 
   return (
     <div className="home">
@@ -56,30 +33,28 @@ export default function Home() {
                 bienvenue sur <span> InstantChat </span>
               </div>
             </div>
-            <div className="calls-actions">
-              <Link href={"/register"}>
-                <button className="action">sInscrire</button>
-              </Link>
+            {!user && (
+              <div className="calls-actions">
+                <Link className="dash-btn" href={"/register"}>
+                  sInscrire
+                </Link>
 
-              <Link href={"/login"}>
-                <button className="action">se Connecter</button>
-              </Link>
-            </div>
-            {/* <div className="titlte">
-              <div className="text">
-                bienvenue sur <span> InstantChat </span>
+                <Link className="dash-btn" href={"/login"}>
+                  se Connecter
+                </Link>
               </div>
-            </div>
-            <div className="calls-actions">
-              <Link href={"/register"}>
-                <button className="action">sInscrire</button>
-              </Link>
-
-              <Link href={"/login"}>
-                <button className="action">se Connecter</button>
-              </Link>
-            </div>
-            <div> */}
+            )}
+            {user && user.uid && (
+              <div className="welcome">
+                <div className="text">
+                  allez a votre <Link href={"/dashboard"}>dashboard</Link> pour
+                  discuter....
+                </div>
+                <Link href={"/dashboard/discuss"} className="dash-btn">
+                  dashboard <FontAwesomeIcon icon={faArrowRight} />
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
