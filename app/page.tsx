@@ -33,7 +33,7 @@ export default function Home() {
                 bienvenue sur <span> InstantChat </span>
               </div>
             </div>
-            {!user && (
+            {!user ? (
               <div className="calls-actions">
                 <Link className="dash-btn" href={"/register"}>
                   sInscrire
@@ -43,12 +43,14 @@ export default function Home() {
                   se Connecter
                 </Link>
               </div>
-            )}
-            {user && user.uid && (
+            ) : (
               <div className="welcome">
                 <div className="text">
-                  allez a votre <Link href={"/dashboard"}>dashboard</Link> pour
-                  discuter....
+                  allez a votre{" "}
+                  <Link className="a" href={"/dashboard"}>
+                    dashboard
+                  </Link>{" "}
+                  pour discuter....
                 </div>
                 <Link href={"/dashboard/discuss"} className="dash-btn">
                   dashboard <FontAwesomeIcon icon={faArrowRight} />

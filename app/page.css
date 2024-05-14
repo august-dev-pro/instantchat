@@ -48,7 +48,7 @@
   gap: 20px;
   justify-content: center;
 }
-.home .home_container .home_content .home_items .welcome a {
+.home .home_container .home_content .home_items .welcome .a {
   color: rgb(238, 69, 69);
   border-bottom: 1px solid #e42a2a;
 }
