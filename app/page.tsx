@@ -46,11 +46,11 @@ export default function Home() {
             ) : (
               <div className="welcome">
                 <div className="text">
-                  allez a votre{" "}
+                  allez a votre
                   <Link className="a" href={"/dashboard"}>
                     dashboard
-                  </Link>{" "}
-                  pour discuter....
+                  </Link>
+                  pour discuter...
                 </div>
                 <Link href={"/dashboard/discuss"} className="dash-btn">
                   dashboard <FontAwesomeIcon icon={faArrowRight} />
