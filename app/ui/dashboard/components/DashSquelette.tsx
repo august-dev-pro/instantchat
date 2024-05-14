@@ -75,7 +75,6 @@ export default function DashSquelette({
   ) => {
     setMessageInput(event.target.value); // Mettre à jour le contenu de la zone de saisie de message
   };
-
   // Ajuster la hauteur de la zone de saisie en fonction de son contenu
   useEffect(() => {
     if (textareaRef.current) {
@@ -333,8 +332,6 @@ export default function DashSquelette({
     setEmojiModalOpen(!emojiModalOpen);
   };
 
-  console.log("selected discut", selectedDiscut);
-
   return (
     <div className={`${title} dash`}>
       <div className={`${title}_container dash_container`}>
@@ -343,11 +340,17 @@ export default function DashSquelette({
           <div className={`aside_show`}>
             <div className="aside_show_container">
               <div className="aside_show_content">
-                <div className="title">{title}</div>
+                <div className="title">mes {title}</div>
                 <div className="aside_chields">
                   {title === "discuss" && discuss && (
                     <div className="discuss_aside">
                       <div className="discuss">
+                        {discuss.length < 1 && (
+                          <div className="now">
+                            vous avez aucune discussion . . . <br />! demarer
+                            une nouvel discussion !
+                          </div>
+                        )}
                         {discuss.map((discussion: any, index: number) => {
                           // Trouver le contact correspondant à l'utilisateur actuel dans la discussion
 
@@ -454,21 +457,6 @@ export default function DashSquelette({
                             </div>
                           ) : null;
                         })}
-                        {/* {discuss.map((discussion: any) => {
-                          return (
-                            <div key={discussion.id}>
-                              <h2>
-                                Discussion avec{" "}
-                                {discussion.participants.user1Id}
-                              </h2>
-                              <ul>
-                                {discussion.messages.map((message: any) => (
-                                  <li key={message.id}>{message.content}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          );
-                        })} */}
                       </div>
                       <div
                         className="add_btn call_action"
@@ -479,10 +467,15 @@ export default function DashSquelette({
                       </div>
                     </div>
                   )}
-
                   {title === "contacts" && contacts && (
                     <div className="contacts_aside">
                       <div className="contacs">
+                        {contacts.length < 1 && (
+                          <div className="now">
+                            vous avez aucune discussion . . . <br />! demarer
+                            une nouvel discussion !
+                          </div>
+                        )}
                         {contacts.map((contact: any, index: number) => (
                           <div
                             className={`contact chield ${
@@ -495,10 +488,6 @@ export default function DashSquelette({
                             onClick={() => handleContactClick(contact)}
                           >
                             <div className="contact_pic picture">
-                              {/*  <img
-                                src={`../../../../images/contacts/gims.jpeg`}
-                                alt="tod_descr"
-                              /> */}
                               <Image
                                 src={"/images/contacts/maes.jpeg"}
                                 alt="profil"
@@ -568,7 +557,8 @@ export default function DashSquelette({
                     <div className="discussion_content">
                       {isLoaded
                         ? "chargement ..."
-                        : Object.values(selectedDiscut.messages).map(
+                        : selectedDiscut.messages &&
+                          Object.values(selectedDiscut.messages).map(
                             (message: any, index: number) => (
                               <div
                                 className={`message  ${
@@ -582,7 +572,7 @@ export default function DashSquelette({
                               >
                                 <div className="message_text">
                                   {message.content}
-                                  <div className="time-readed">
+                                  <div className="time-readed inMessage">
                                     {message.senderId === user.uid && (
                                       <div
                                         className={`readed ${
@@ -728,10 +718,14 @@ export default function DashSquelette({
                                 </div>
                                 <div className="contact_des">
                                   <div className="contact_name">
-                                    {reduceMessage(contact.username, 20)}
+                                    {
+                                      /* {reduceMessage(contact.username, 20)} */ contact.username
+                                    }
                                   </div>
                                   <div className="phone">
-                                    {reduceMessage(contact.phone, 20)}
+                                    {
+                                      /* {reduceMessage(contact.phone, 20)} */ contact.phone
+                                    }
                                   </div>
                                 </div>
                               </div>
@@ -819,6 +813,12 @@ export default function DashSquelette({
           {title === "discuss" && discuss && (
             <div className="discuss_aside">
               <div className="discuss">
+                {discuss.length < 1 && (
+                  <div className="now">
+                    vous avez aucune discussion . . . <br />! demarer une nouvel
+                    discussion !
+                  </div>
+                )}
                 {discuss.map((discussion: any, index: number) => {
                   // Trouver le contact correspondant à l'utilisateur actuel dans la discussion
                   const contact = contacts?.find((contact: any) => {
@@ -873,7 +873,7 @@ export default function DashSquelette({
                                 : "Aucun message"}
                             </div>
                           </div>
-                          <div className="time_unRead">
+                          <div className="time_unReads">
                             {countUnreadMessages(
                               discussion.messages,
                               user.uid
@@ -935,6 +935,9 @@ export default function DashSquelette({
           {title === "contacts" && contacts && (
             <div className="contacts_aside">
               <div className="contacs">
+                {contacts.length < 1 && (
+                  <div className="now">vous avez aucun contact . . .</div>
+                )}
                 {contacts.map((contact: any, index: number) => (
                   <div
                     className={`contact chield`}

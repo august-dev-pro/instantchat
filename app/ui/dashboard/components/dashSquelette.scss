@@ -4,8 +4,31 @@
     align-items: center;
     font-size: 10px;
     justify-content: right;
+    right: -10px;
+    bottom: -8px;
+    gap: 5px;
+
+    .readed {
+        .deplace {
+            position: absolute;
+            left: -4px;
+            bottom: 3px;
+        }
+    }
+
+    .time {
+        letter-spacing: 1px;
+    }
+
+    .read {
+        color: rgb(0, 204, 255);
+    }
+}
+
+.time-readed.inMessage {
+    justify-content: right;
     right: 10px;
-    bottom: 5px;
+    bottom: 2px;
     gap: 5px;
 
     .readed {
@@ -264,6 +287,7 @@
 
             .description {
                 font-size: 15px;
+                width: 100%;
 
                 .name {
                     text-transform: capitalize;
@@ -449,6 +473,8 @@
                         -ms-overflow-style: none;
 
                         .message {
+
+
                             .message_text {
                                 padding: 8px;
                                 border-radius: 1rem;
@@ -633,14 +659,24 @@
                         width: 300px;
 
                         .title {
+                            text-transform: uppercase;
                             padding: 5px 15px;
                             font-size: 18px;
                             font-weight: 400;
+                            border-bottom: 1px solid #fff;
                         }
 
                         .aside_chields {
                             display: flex;
                             flex-direction: column;
+
+
+                            .now {
+                                text-align: center;
+                                padding: 30px 0;
+                                font-weight: 300;
+                            }
+
 
                             .discut {
                                 font-size: 15px;
@@ -877,7 +913,7 @@
                         gap: 5px;
                         position: relative;
                         padding-right: 60px;
-
+                        word-wrap: anywhere;
 
 
                     }
@@ -1126,6 +1162,9 @@
                     -ms-overflow-style: none;
 
                     .message {
+
+
+                        /* Alternative moderne */
                         .message_text {
                             padding: 7px;
                             padding-bottom: 15px;
@@ -1144,7 +1183,7 @@
 
                     .message.sent {
                         .message_text {
-                            max-width: 70%;
+                            max-width: 80%;
                         }
                     }
 
@@ -1212,20 +1251,7 @@
     }
 
     .time-readed {
-        bottom: -10px;
-        left: 100%;
-    }
-
-    .time_unRead {
-        position: relative;
-
-        .readed {
-            .deplace {
-                position: absolute;
-                left: -45px;
-                bottom: 3px;
-            }
-        }
+        bottom: 1px;
     }
 
     .emoji-Modal {
@@ -1458,6 +1484,12 @@
             .screen_dash_content {
                 display: block;
                 width: 100%;
+
+                .now {
+                    text-align: center;
+                    padding: 30px 0;
+                    font-weight: 300;
+                }
 
                 .contact_show {
                     width: 100%;

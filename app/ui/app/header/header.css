@@ -48,6 +48,9 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.header .header_container .header_content .nav_menu_drop {
+  display: none;
+}
 
 @media screen and (max-width: 420px) {
   .header {
@@ -58,5 +61,8 @@
   }
   .header .header_container .header_content .nav {
     display: none;
+  }
+  .header .header_container .header_content .nav_menu_drop {
+    display: flex;
   }
 }/*# sourceMappingURL=header.css.map */

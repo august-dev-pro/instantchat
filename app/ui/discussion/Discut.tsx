@@ -136,7 +136,7 @@ const Discut = ({ id }: { id: string }) => {
                     >
                       <div className="message_text">
                         {message.content}
-                        <div className="time-readed">
+                        <div className="time-readed inMessage">
                           {message.senderId === user.uid && (
                             <div
                               className={`readed ${message.read ? "read" : ""}`}

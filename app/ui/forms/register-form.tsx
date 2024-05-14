@@ -9,7 +9,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-
+  const [errorMessage, seterrorMessage] = useState("");
   const handleUserNameChange = (event: any) => {
     setUserName(event.target.value);
   };
@@ -25,16 +25,33 @@ const RegisterForm = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault(); // Empêche le comportement par défaut de soumission du formulaire
 
     // Appel de la fonction writeUserData avec les informations du formulaire
-    writeUserData(userName, email, phone, password);
-
+    const errorMessage = await writeUserData(userName, email, phone, password);
     // Effacer les champs du formulaire après la soumission
-    setUserName("");
-    setEmail("");
-    setPassword("");
+    if (errorMessage) {
+      console.log("message error", errorMessage);
+
+      switch (errorMessage) {
+        case "Firebase: Password should be at least 6 characters (auth/weak-password).":
+          seterrorMessage("! password: 6 caracteres minimum !");
+          break;
+        case "Firebase: Error (auth/email-already-in-use).":
+          seterrorMessage("cet email existe déja !!! ");
+          break;
+        default:
+          seterrorMessage("Une erreur s'est produite. Veuillez réessayer.");
+      }
+    } else {
+      // Redirection vers la page de tableau de bord si la connexion est réussie
+      window.location.assign("/login");
+      setUserName("");
+      setEmail("");
+      setPassword("");
+      setPhone("");
+    }
   };
   return (
     <form onSubmit={handleSubmit} className="register-form form">
@@ -44,6 +61,7 @@ const RegisterForm = () => {
             <div className="reg-form_tilte form_title">Inscrivez-vous !!</div>
           </div>
           <div className="reg-form_items form_items">
+            {errorMessage && <div className="red">{errorMessage}</div>}
             <div className="saisies">
               <div className="chield">
                 <label htmlFor="userName">
