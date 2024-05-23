@@ -7,10 +7,15 @@ import { getAuth } from "firebase/auth";
 import { listenForUserData } from "@/firebaseDatabase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import FileUpload from "./ui/accessoires/filesUpload/FileUpload";
 
 export default function Home() {
   const [userData, setUserData] = useState<any[]>([]);
   const [user, setUser] = useState<any>();
+
+  const onFileUpload = (url: string) => {
+    console.log("file Uploaded Url is: ", url);
+  };
   useEffect(() => {
     const currentUser = getAuth().currentUser;
     setUser(currentUser);
@@ -57,6 +62,9 @@ export default function Home() {
                 </Link>
               </div>
             )}
+          </div>
+          <div className="uploadFileTest">
+            <FileUpload onFileUpload={onFileUpload} />
           </div>
         </div>
       </div>

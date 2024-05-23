@@ -1,21 +1,17 @@
 import {
   get,
-  orderByChild,
   push,
-  query,
   ref,
   set,
-  equalTo,
   onValue,
   update,
   DatabaseReference,
 } from "firebase/database";
-import { auth, database } from "./firebaseConfig";
+import { auth, database, storage } from "./firebaseConfig";
 import { Discuss, Message, User } from "./app/ui/interfaces/interface";
 import {
   createUserWithEmailAndPassword,
   getAuth,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -23,18 +19,6 @@ import { useEffect, useState } from "react";
 import { Timestamp, serverTimestamp } from "firebase/firestore/lite";
 import { boolean } from "zod";
 
-/* fonction d'inscription */
-/* export async function writeUserDataContacts(userIdToUpdate: string) {
-  try {
-    const userId = userIdToUpdate;
-    await set(ref(database, `users/${userId}/contacts`), [
-      "C9mRJHaYRwRcCoQAk3EKdu3U1By2",
-    ]);
-    console.log("Nouvau champ contacts creer pour le utilisateur :", userId);
-  } catch (error) {
-    console.log(`error survienne to the pushed it is: ${error}`);
-  }
-} */
 export async function writeUserData(
   name: string,
   email: string,

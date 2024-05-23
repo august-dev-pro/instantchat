@@ -167,33 +167,6 @@ export default function DashSquelette({
     }
   };
 
-  //mise a jour de la discussion selectionné
-  /* useEffect(() => {
-    // Vérifier si selectedDiscuss est défini et s'il est présent dans les nouvelles discussions
-    if (selectedDiscut && discuss) {
-      const updatedSelectedDiscuss = discuss.find(
-        (d: any) => d.id === selectedDiscut.id
-      );
-      if (updatedSelectedDiscuss) {
-
-        const newselected = async () => {
-          await Promise.all(
-            selectedDiscut.messages.map(async (message: any) => {
-              if (message && !message.read && message.senderId !== user.uid) {
-                await markMessagesAsRead(
-                  selectedDiscut.id,
-                  message.id,
-                  user.uid
-                );
-              }
-            })
-          );
-        }
-        setSelectedDiscut(updatedSelectedDiscuss);
-      }
-    }
-  }, [discuss, user]); */
-
   useEffect(() => {
     if (selectedDiscut && discuss) {
       const updatedSelectedDiscuss = discuss.find(
@@ -217,23 +190,6 @@ export default function DashSquelette({
     }
   }, [discuss, user]);
 
-  /* useEffect(() => {
-    // Fonction pour récupérer le dernier message de chaque discussion
-    const fetchLastMessages = async () => {
-      for (const discussion of discuss) {
-        try {
-          const lastMessage = await getLastMessage(discussion);
-          setLastMessages(lastMessage);
-        } catch (error) {
-          console.error("Une erreur s'est produite :", error);
-        }
-      }
-      //   setLastMessages(messages); // Mettre à jour les derniers messages une fois qu'ils sont récupérés
-    };
-
-    fetchLastMessages();
-  }, [discuss]); */
-
   useEffect(() => {
     // Fonction pour récupérer le dernier message de chaque discussion
     const fetchLastMessages = async () => {
@@ -251,8 +207,6 @@ export default function DashSquelette({
 
     fetchLastMessages();
   }, [discuss]);
-
-  //console.log(`contacts: ${contacts}`);
 
   const handleAddNewContactDisplay = () => {
     setSelectedContact(null);
@@ -305,23 +259,6 @@ export default function DashSquelette({
       console.log("erreur lors de la creation de la discussion:", error);
     }
   };
-  /* console.log(
-    `selectedDiscutContact is: ${JSON.stringify(selectedDiscutContact)}`
-  ); */
-  // Boucler à travers les propriétés de lastMessages
-  /*   for (const key in lastMessages) {
-    if (Object.prototype.hasOwnProperty.call(lastMessages, key)) {
-      const message = lastMessages[key];
-      if (message && message.content) {
-        console.log(
-          `Message ID: ${key}, Contenu réduit: ${reduceMessage(
-            message.content,
-            20
-          )}`
-        );
-      }
-    }
-  } */
   const [emojiModalOpen, setEmojiModalOpen] = useState(false);
 
   const emojiClick = (emoji: any) => {

@@ -1,0 +1,63 @@
+.file_upload {
+  border-radius: 0.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.file_upload .file-preview .files-annuler {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.file_upload .file-preview .files-annuler svg {
+  cursor: pointer;
+}
+.file_upload .file-preview .file-show {
+  width: 500px;
+  max-height: 500px;
+  margin: 0 auto;
+}
+.file_upload .file-preview .file-show video {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.file_upload .actions {
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.file_upload .actions .add-icon {
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3490196078);
+  transition: all 0.1s ease;
+}
+.file_upload .actions .add-icon .plus {
+  font-size: 20px;
+}
+.file_upload .actions .send {
+  padding: 8px 25px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00b3b3;
+  transition: all 0.2s ease;
+}
+.file_upload .actions .send:hover {
+  background-color: #009b9b;
+}
+.file_upload .actions .add-icon:hover {
+  background-color: #3a3a3a;
+}/*# sourceMappingURL=style.css.map */
