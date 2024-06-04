@@ -129,14 +129,6 @@
 }
 .addNewContactModale .contacts_suc .contacts .search_input {
   padding: 10px 20px;
-  /*   .handle_search_btn {
-                      padding: 0 7px;
-                      display: flex;
-                      align-items: center;
-                      cursor: pointer;
-                      transition: all .2s;
-                      background-color: #06938b;
-                  } */
 }
 .addNewContactModale .contacts_suc .contacts .search_input .search_user_input {
   width: 100%;
@@ -387,10 +379,17 @@
   border-radius: 1rem;
   font-weight: 300;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 5px;
   position: relative;
   padding-right: 60px;
+  text-align: left;
+}
+.dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message .message_text .video-message video {
+  max-height: 370px;
+  width: auto;
+  max-width: 100%;
+  border-radius: 0.5Rem;
 }
 .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.received {
   display: flex;
@@ -404,12 +403,10 @@
 }
 .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.sent {
   display: flex;
-  justify-content: right;
 }
 .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.sent .message_text {
   border-bottom-right-radius: 0;
   max-width: 50%;
-  text-align: justify;
   background-color: rgba(6, 147, 140, 0.4039215686);
 }
 .dash .dash_container .discussion_show .discussion_block .discussion .discussion_content .message.system-message {
@@ -426,7 +423,7 @@
 .dash .dash_container .discussion_show .discussion_block .message-input {
   padding: 5px 20px;
   display: grid;
-  grid-template-columns: 40px 40px 1fr;
+  grid-template-columns: 40px 70px 1fr;
   position: relative;
   align-items: flex-end;
 }
@@ -709,7 +706,6 @@
   border-radius: 1rem;
   font-weight: 300;
   display: flex;
-  align-items: center;
   gap: 5px;
   position: relative;
   padding-right: 60px;
@@ -903,6 +899,7 @@
     min-width: 70px;
     border-radius: 1rem;
     font-size: 18px;
+    flex-direction: column;
   }
   .discussion_show .discussion_block .discussion .discussion_content .message.received .message_text {
     max-width: 70%;
@@ -923,14 +920,15 @@
   }
   .discussion_show .discussion_block .message-input {
     padding: 5px 5px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 40px 1fr;
     align-items: flex-start;
   }
   .discussion_show .discussion_block .message-input .emojo-file {
     display: flex;
   }
   .discussion_show .discussion_block .message-input .emojit {
+    display: none;
     height: 100%;
     width: -moz-fit-content;
     width: fit-content;

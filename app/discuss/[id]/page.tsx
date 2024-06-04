@@ -2,9 +2,6 @@
 import {
   getDiscut,
   listenForDiscussions,
-  listenForDiscut,
-  listenForUser,
-  listenForUserData,
   markMessagesAsRead,
   readUserData,
   reduceMessage,
@@ -23,9 +20,10 @@ import { getAuth } from "firebase/auth";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import "@/app/ui/dashboard/components/dashSquelette.css";
-import SendFile from "@/app/ui/dashboard/components/SendFile";
 import EmojiModal from "@/app/ui/dashboard/components/EmojiModal";
 import Link from "next/link";
+import VideoMessage from "@/app/ui/accessoires/videoComponent/Video";
+import FileUpload from "@/app/ui/accessoires/filesUpload/FileUpload";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const discussId = params.id;
@@ -39,6 +37,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   const [message, setMessageInput] = useState<string>(""); // État pour le contenu de la zone de saisie de message
   const [emojiModalOpen, setEmojiModalOpen] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null); // Référence à l'élément textarea
+  const [isFileSelected, setIsFileSelected] = useState<boolean>(false);
 
   const handleMessageInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -131,6 +130,10 @@ const Page = ({ params }: { params: { id: string } }) => {
     }
   }, [discuss, user]);
 
+  const onFileUpload = (url: string) => {
+    console.log("file Uploaded Url is: ", url);
+  };
+
   return (
     <div>
       {discut && (
@@ -183,7 +186,30 @@ const Page = ({ params }: { params: { id: string } }) => {
                         key={index}
                       >
                         <div className="message_text">
-                          {message.content}
+                          {message.files &&
+                            message.files.map((file: any, index: number) => (
+                              <div className="file" key={index}>
+                                {file.type.startsWith("image/") ? (
+                                  <Image
+                                    src={file.url}
+                                    alt="Image"
+                                    width={500}
+                                    height={500}
+                                  />
+                                ) : file.type.startsWith("video/") ? (
+                                  <VideoMessage src={file.url} />
+                                ) : (
+                                  <a
+                                    href={file.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    Download File
+                                  </a>
+                                )}
+                              </div>
+                            ))}
+                          <div className="content_text">{message.content}</div>
                           <div className="time-readed inMessage">
                             {message.senderId === user.uid && (
                               <div
@@ -216,7 +242,13 @@ const Page = ({ params }: { params: { id: string } }) => {
                       <FontAwesomeIcon icon={faSmile} />
                     </label>
                   </div>
-                  <SendFile />
+                  <FileUpload
+                    setIsFileSelected={setIsFileSelected}
+                    onFileUpload={onFileUpload}
+                    discussId={discussId}
+                    userId={user.uid}
+                  />
+
                   {emojiModalOpen && <EmojiModal emojiClick={emojiClick} />}
                 </div>
 

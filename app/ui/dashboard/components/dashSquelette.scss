@@ -176,14 +176,7 @@
                     border-bottom: 1px solid #ffff;
                 }
 
-                /*   .handle_search_btn {
-                                    padding: 0 7px;
-                                    display: flex;
-                                    align-items: center;
-                                    cursor: pointer;
-                                    transition: all .2s;
-                                    background-color: #06938b;
-                                } */
+
 
                 .handle_search_btn:hover {
                     background-color: #03d3c8;
@@ -480,11 +473,22 @@
                                 border-radius: 1rem;
                                 font-weight: 300;
                                 display: flex;
-                                align-items: center;
+                                flex-direction: column;
                                 gap: 5px;
                                 position: relative;
                                 padding-right: 60px;
+                                text-align: left;
 
+                                .video-message {
+                                    // max-height: 150px;
+
+                                    video {
+                                        max-height: 370px;
+                                        width: auto;
+                                        max-width: 100%;
+                                        border-radius: .5Rem;
+                                    }
+                                }
 
 
                             }
@@ -506,12 +510,12 @@
                         .message.sent {
                             //background-color: #0077ff;
                             display: flex;
-                            justify-content: right;
+                            // justify-content: right;
 
                             .message_text {
                                 border-bottom-right-radius: 0;
                                 max-width: 50%;
-                                text-align: justify;
+                                // text-align: justify;
                                 background-color: #06938c67;
                             }
                         }
@@ -536,7 +540,7 @@
                 .message-input {
                     padding: 5px 20px;
                     display: grid;
-                    grid-template-columns: 40px 40px 1fr;
+                    grid-template-columns: 40px 70px 1fr;
                     //align-items: center;
                     //height: 50px;
                     position: relative;
@@ -909,7 +913,7 @@
                         border-radius: 1rem;
                         font-weight: 300;
                         display: flex;
-                        align-items: center;
+                        // align-items: center;
                         gap: 5px;
                         position: relative;
                         padding-right: 60px;
@@ -1172,6 +1176,7 @@
                             min-width: 70px;
                             border-radius: 1rem;
                             font-size: 18px;
+                            flex-direction: column;
                         }
                     }
 
@@ -1194,6 +1199,7 @@
 
                         .message_text {
                             max-width: 95%;
+
                             text-align: center;
                             background-color: #00000041;
                             color: #dddddd;
@@ -1206,8 +1212,8 @@
 
             .message-input {
                 padding: 5px 5px;
-                display: flex;
-                flex-direction: column;
+                display: grid;
+                grid-template-columns: 40px 1fr;
                 align-items: flex-start;
 
                 .emojo-file {
@@ -1215,6 +1221,7 @@
                 }
 
                 .emojit {
+                    display: none;
                     height: 100%;
                     width: fit-content;
                 }

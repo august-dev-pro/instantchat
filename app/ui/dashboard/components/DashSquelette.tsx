@@ -30,16 +30,21 @@ import {
   faCircleStop,
   faComment,
   faContactBook,
+  faFile,
+  faFileAlt,
   faFolderPlus,
+  faImage,
   faMessage,
   faPlus,
   faTimesCircle,
   faTrash,
+  faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import EmojiModal from "./EmojiModal";
-import SendFile from "./SendFile";
 import Link from "next/link";
+import FileUpload from "../../accessoires/filesUpload/FileUpload";
+import VideoMessage from "../../accessoires/videoComponent/Video";
 
 export default function DashSquelette({
   title,
@@ -69,7 +74,11 @@ export default function DashSquelette({
   const [lastMessages, setLastMessages] = useState<any>({}); // État pour stocker les derniers messages de chaque discussion
   const [search, setsearch] = useState("");
   const [isContactConnected, setIsContactConnected] = useState<boolean>(false);
+  const [isFileSelected, setIsFileSelected] = useState<boolean>(false);
 
+  const onFileUpload = (url: string) => {
+    console.log("file Uploaded Url is: ", url);
+  };
   const handleMessageInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -208,6 +217,8 @@ export default function DashSquelette({
     fetchLastMessages();
   }, [discuss]);
 
+  console.log("latest message: ", lastMessages);
+
   const handleAddNewContactDisplay = () => {
     setSelectedContact(null);
     setAddNewContactDisplay(true);
@@ -321,10 +332,6 @@ export default function DashSquelette({
                               }
                             >
                               <div className="sender_profil picture">
-                                {/*  <img
-                                  src={`../../../../images/contacts/lefa.jpeg`}
-                                  alt="tod_descr"
-                                /> */}
                                 <Image
                                   src={"/images/contacts/maes.jpeg"}
                                   alt="profil"
@@ -339,10 +346,48 @@ export default function DashSquelette({
                                   </div>
                                   <div className="last_message">
                                     {lastMessages[discussion.id]
-                                      ? reduceMessage(
-                                          lastMessages[discussion.id].content,
-                                          25
-                                        )
+                                      ? lastMessages[discussion.id].content !==
+                                        ""
+                                        ? reduceMessage(
+                                            lastMessages[discussion.id].content,
+                                            25
+                                          )
+                                        : lastMessages[discussion.id].files &&
+                                          lastMessages[discussion.id].files
+                                            .length > 0
+                                        ? lastMessages[discussion.id].files.map(
+                                            (file: any, index: number) => (
+                                              <div className="file" key={index}>
+                                                {file.type.startsWith(
+                                                  "image/"
+                                                ) ? (
+                                                  <>
+                                                    <FontAwesomeIcon
+                                                      icon={faImage}
+                                                    />{" "}
+                                                    Image
+                                                  </>
+                                                ) : file.type.startsWith(
+                                                    "video/"
+                                                  ) ? (
+                                                  <>
+                                                    <FontAwesomeIcon
+                                                      icon={faVideo}
+                                                    />{" "}
+                                                    Video
+                                                  </>
+                                                ) : (
+                                                  <>
+                                                    <FontAwesomeIcon
+                                                      icon={faFile}
+                                                    />{" "}
+                                                    {file.name}
+                                                  </>
+                                                )}
+                                              </div>
+                                            )
+                                          )
+                                        : "Aucun fichier"
                                       : "Aucun message"}
                                   </div>
                                 </div>
@@ -507,31 +552,62 @@ export default function DashSquelette({
                                 }`}
                                 key={index}
                               >
-                                <div className="message_text">
-                                  {message.content}
-                                  <div className="time-readed inMessage">
-                                    {message.senderId === user.uid && (
-                                      <div
-                                        className={`readed ${
-                                          message.read ? "read" : ""
-                                        }`}
-                                      >
-                                        <FontAwesomeIcon icon={faCheck} />
-                                        <FontAwesomeIcon
-                                          className="deplace"
-                                          icon={faCheck}
-                                        />
-                                      </div>
-                                    )}
-                                    <div className="time">
-                                      {reduceMessage(
-                                        message.writeTime,
-                                        5,
-                                        true
+                                {message && (
+                                  <div className="message_text">
+                                    {message.files &&
+                                      message.files.map(
+                                        (file: any, index: number) => (
+                                          <div className="file" key={index}>
+                                            {file.type.startsWith("image/") ? (
+                                              <Image
+                                                src={file.url}
+                                                alt="Image"
+                                                width={500}
+                                                height={500}
+                                              />
+                                            ) : file.type.startsWith(
+                                                "video/"
+                                              ) ? (
+                                              <VideoMessage src={file.url} />
+                                            ) : (
+                                              <a
+                                                href={file.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                              >
+                                                Download File
+                                              </a>
+                                            )}
+                                          </div>
+                                        )
                                       )}
+                                    <div className="content_text">
+                                      {message.content}
+                                    </div>
+                                    <div className="time-readed inMessage">
+                                      {message.senderId === user.uid && (
+                                        <div
+                                          className={`readed ${
+                                            message.read ? "read" : ""
+                                          }`}
+                                        >
+                                          <FontAwesomeIcon icon={faCheck} />
+                                          <FontAwesomeIcon
+                                            className="deplace"
+                                            icon={faCheck}
+                                          />
+                                        </div>
+                                      )}
+                                      <div className="time">
+                                        {reduceMessage(
+                                          message.writeTime,
+                                          5,
+                                          true
+                                        )}
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
+                                )}
                               </div>
                             )
                           )}
@@ -543,7 +619,12 @@ export default function DashSquelette({
                         <FontAwesomeIcon icon={faSmile} />
                       </label>
                     </div>
-                    <SendFile />
+                    <FileUpload
+                      onFileUpload={onFileUpload}
+                      setIsFileSelected={setIsFileSelected}
+                      userId={user.uid}
+                      discussId={selectedDiscut.id}
+                    />
                     {emojiModalOpen && <EmojiModal emojiClick={emojiClick} />}
                     {/* Zone de saisie de message */}
                     <div className="espace-send">
@@ -802,12 +883,49 @@ export default function DashSquelette({
                               {contact.username}
                             </div>
                             <div className="last_message">
-                              {lastMessages[discussion.id]
-                                ? reduceMessage(
-                                    lastMessages[discussion.id].content,
-                                    25
-                                  )
-                                : "Aucun message"}
+                              <div className="last_message">
+                                {lastMessages[discussion.id]
+                                  ? lastMessages[discussion.id].content !== ""
+                                    ? reduceMessage(
+                                        lastMessages[discussion.id].content,
+                                        25
+                                      )
+                                    : lastMessages[discussion.id].files &&
+                                      lastMessages[discussion.id].files.length >
+                                        0
+                                    ? lastMessages[discussion.id].files.map(
+                                        (file: any, index: number) => (
+                                          <div className="file" key={index}>
+                                            {file.type.startsWith("image/") ? (
+                                              <>
+                                                <FontAwesomeIcon
+                                                  icon={faImage}
+                                                />{" "}
+                                                Image
+                                              </>
+                                            ) : file.type.startsWith(
+                                                "video/"
+                                              ) ? (
+                                              <>
+                                                <FontAwesomeIcon
+                                                  icon={faVideo}
+                                                />{" "}
+                                                Video
+                                              </>
+                                            ) : (
+                                              <>
+                                                <FontAwesomeIcon
+                                                  icon={faFile}
+                                                />{" "}
+                                                {file.name}
+                                              </>
+                                            )}
+                                          </div>
+                                        )
+                                      )
+                                    : "Aucun fichier"
+                                  : "Aucun message"}
+                              </div>
                             </div>
                           </div>
                           <div className="time_unReads">

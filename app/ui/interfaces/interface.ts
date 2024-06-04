@@ -8,6 +8,7 @@ export interface User {
 export interface Message {
   senderId: string;
   content: string;
+  files?: any[];
   writeDate: any;
   writeTime: any;
   read: boolean;

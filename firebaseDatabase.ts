@@ -185,15 +185,28 @@ export async function writeMessage(message: Message, discussId: any) {
 export async function sendMessage(
   senderId: string,
   messageContent: string,
-  discussId: string
+  discussId: string,
+  file?: any
 ) {
-  const message: Message = {
-    senderId: senderId,
-    content: messageContent,
-    writeDate: Timestamp.now().toDate().toDateString(),
-    writeTime: Timestamp.now().toDate().toTimeString(),
-    read: false,
-  };
+  let message: Message;
+  if (file) {
+    message = {
+      senderId: senderId,
+      content: messageContent,
+      files: [file],
+      writeDate: Timestamp.now().toDate().toDateString(),
+      writeTime: Timestamp.now().toDate().toTimeString(),
+      read: false,
+    };
+  } else {
+    message = {
+      senderId: senderId,
+      content: messageContent,
+      writeDate: Timestamp.now().toDate().toDateString(),
+      writeTime: Timestamp.now().toDate().toTimeString(),
+      read: false,
+    };
+  }
   try {
     await writeMessage(message, discussId);
     console.log(
